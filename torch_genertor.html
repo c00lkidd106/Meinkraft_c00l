@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Torch Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Torch (Minecraft-Alpha-Stil, 16×16)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+  <canvas id="c" width="16" height="16"
+    style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawTorch() {
+      ctx.clearRect(0,0,16,16);
+
+      // Hintergrund leicht abdunkeln
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0,0,16,16);
+
+      // Holzgriff (dunkles Braun)
+      for (let y = 6; y < 16; y++) {
+        ctx.fillStyle = ["#4a2e14", "#5c3a1a", "#3a210f"][Math.floor(Math.random()*3)];
+        ctx.fillRect(7, y, 2, 1);
+      }
+
+      // Übergang zum Feuer (helleres Holz)
+      ctx.fillStyle = "#7a4a20";
+      ctx.fillRect(7, 5, 2, 1);
+
+      // Feuerfarben
+      const fire = ["#fff176", "#ffca28", "#ff8f00", "#ff6f00", "#ff3d00"];
+
+      // Feuerkern
+      for (let i = 0; i < 20; i++) {
+        ctx.fillStyle = fire[(Math.random()*fire.length)|0];
+        const x = 6 + ((Math.random()*4)|0);
+        const y = 0 + ((Math.random()*6)|0);
+        ctx.fillRect(x, y, 1, 1);
+      }
+
+      // Helle Highlights
+      for (let i = 0; i < 6; i++) {
+        ctx.fillStyle = "#fff9c4";
+        const x = 7 + ((Math.random()*2)|0);
+        const y = 1 + ((Math.random()*3)|0);
+        ctx.fillRect(x, y, 1, 1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawTorch;
+    drawTorch();
+  </script>
+</body>
+</html>
