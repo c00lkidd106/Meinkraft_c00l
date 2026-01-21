@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Meinkraft_c00l</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="menu">
+  <h1 class="title">MEINKRAFT_c00l</h1>
+
+  <button class="menu-btn" onclick="openSingleplayer()">Singleplayer</button>
+  <button class="menu-btn disabled">Multiplayer</button>
+  <button class="menu-btn" onclick="openSettings()">Settings</button>
+</div>
+
+<div id="singleplayer" class="panel hidden">
+  <h2>Neue Welt erstellen</h2>
+  <label>Weltname:</label>
+  <input id="worldName" type="text" placeholder="Meine Welt">
+
+  <label>Seed (leer = zufällig):</label>
+  <input id="seedInput" type="text" placeholder="Zufällig">
+
+  <button onclick="startGame()">Welt erstellen</button>
+  <button onclick="backToMenu()">Zurück</button>
+</div>
+
+<div id="settings" class="panel hidden">
+  <h2>Einstellungen</h2>
+
+  <label>Sound:</label>
+  <input id="soundSlider" type="range" min="0" max="100" value="50">
+
+  <label>Musik:</label>
+  <input id="musicSlider" type="range" min="0" max="100" value="50">
+
+  <label>Chunks render distance:</label>
+  <input id="chunkSlider" type="range" min="2" max="12" value="6">
+
+  <button onclick="backToMenu()">Zurück</button>
+</div>
+
+<canvas id="gameCanvas" class="hidden"></canvas>
+
+<script src="main.js"></script>
+</body>
+</html>
