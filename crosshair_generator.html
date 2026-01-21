@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Crosshair Alpha</title>
+</head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+  <h3>Crosshair (Minecraft-Alpha-Stil)</h3>
+
+  <canvas id="c" width="16" height="16"
+    style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawCrosshair() {
+      ctx.clearRect(0,0,16,16);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(7,2,2,4);
+      ctx.fillRect(7,10,2,4);
+      ctx.fillRect(2,7,4,2);
+      ctx.fillRect(10,7,4,2);
+    }
+
+    drawCrosshair();
+  </script>
+</body>
+</html>
