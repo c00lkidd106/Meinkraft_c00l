@@ -55,4 +55,15 @@ function startGame() {
   // Musik starten
   startMusicSystem();
 }
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (!gamePaused) openPauseMenu();
+    else resumeGame();
+  }
+});
+let gamePaused = false;
+let difficulty = "normal";
 
+const pauseMenu = document.getElementById("pauseMenu");
+const pauseOptions = document.getElementById("pauseOptions");
+const difficultyMenu = document.getElementById("difficultyMenu");
