@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Furnace GUI Alpha</title></head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+<h3>Furnace GUI (Alpha-Stil)</h3>
+<canvas id="c" width="176" height="166" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+<script>
+const c = document.getElementById("c");
+const ctx = c.getContext("2d");
+
+function draw() {
+  ctx.fillStyle="#c6c6c6"; ctx.fillRect(0,0,176,166);
+  ctx.fillStyle="#8b8b8b"; ctx.fillRect(4,4,168,158);
+  ctx.fillStyle="#373737"; ctx.fillRect(8,8,160,150);
+
+  ctx.strokeStyle="#8b8b8b";
+  ctx.strokeRect(56.5,35.5,16,16);
+  ctx.strokeRect(56.5,75.5,16,16);
+  ctx.strokeRect(102.5,55.5,16,16);
+
+  ctx.fillStyle="#d8d8d8";
+  ctx.fillRect(78,60,24,4);
+
+  ctx.fillStyle="#ffb347";
+  ctx.fillRect(60,95,8,8);
+}
+draw();
+</script>
+</body>
+</html>
