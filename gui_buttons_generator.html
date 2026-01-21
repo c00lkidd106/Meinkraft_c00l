@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Buttons Alpha</title></head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+<h3>Buttons (Alpha-Stil)</h3>
+<canvas id="c" width="200" height="60" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+<script>
+const c=document.getElementById("c");
+const ctx=c.getContext("2d");
+
+function button(x,y,color){
+  ctx.fillStyle=color;
+  ctx.fillRect(x,y,60,20);
+  ctx.strokeStyle="#000000";
+  ctx.strokeRect(x+0.5,y+0.5,60,20);
+}
+
+button(10,10,"#c6c6c6");
+button(80,10,"#dcdcdc");
+button(150,10,"#a0a0a0");
+</script>
+</body>
+</html>
