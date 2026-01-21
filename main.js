@@ -47,3 +47,12 @@ function startWorld(seed) {
   ctx.font = "30px sans-serif";
   ctx.fillText("Welt geladen! Seed: " + seed, 50, 50);
 }
+function startGame() {
+  // ... dein Code ...
+
+  startWorld(seed);
+
+  // Musik starten
+  startMusicSystem();
+}
+
