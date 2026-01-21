@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Crack 5 Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Crack 5 (Minecraft-Alpha-Stil, 16×16)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawCrack5() {
+      ctx.fillStyle = "#7f7f7f";
+      ctx.fillRect(0,0,16,16);
+
+      for (let i = 0; i < 95; i++) {
+        ctx.fillStyle = "#0f0f0f";
+        ctx.fillRect((Math.random()*16)|0, (Math.random()*16)|0, 1, 1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawCrack5;
+    drawCrack5();
+  </script>
+</body>
+</html>
