@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Tooltip Alpha</title></head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+<h3>Tooltip Box (Alpha-Stil)</h3>
+<canvas id="c" width="120" height="40" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+<script>
+const c=document.getElementById("c");
+const ctx=c.getContext("2d");
+
+function draw(){
+  ctx.fillStyle="rgba(16,16,16,0.9)";
+  ctx.fillRect(0,0,120,40);
+
+  ctx.strokeStyle="#505050";
+  ctx.strokeRect(0.5,0.5,119,39);
+
+  ctx.fillStyle="#ffffff";
+  ctx.font="10px monospace";
+  ctx.fillText("Tooltip Text", 6, 18);
+}
+draw();
+</script>
+</body>
+</html>
