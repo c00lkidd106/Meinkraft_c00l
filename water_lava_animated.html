@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Water & Lava Alpha Animation</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Water / Lava animiert (16×16)</h3>
+  <button id="mode">Modus wechseln (Wasser/Lava)</button><br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+    let isWater = true;
+
+    function drawFluid() {
+      ctx.clearRect(0,0,16,16);
+      if(isWater){
+        for(let y=0;y<16;y++){
+          for(let x=0;x<16;x++){
+            const base = 120 + Math.sin((x+y+Date.now()/120)/3)*20;
+            ctx.fillStyle = `rgb(0,${base},${200})`;
+            if(Math.random()<0.1) ctx.fillStyle = `rgb(0,${base+30},255)`;
+            ctx.fillRect(x,y,1,1);
+          }
+        }
+      } else {
+        for(let y=0;y<16;y++){
+          for(let x=0;x<16;x++){
+            const base = 120 + Math.sin((x-y+Date.now()/130)/2)*40;
+            ctx.fillStyle = `rgb(${200},${base},0)`;
+            if(Math.random()<0.12) ctx.fillStyle = `rgb(255,${base+40},0)`;
+            ctx.fillRect(x,y,1,1);
+          }
+        }
+      }
+    }
+
+    setInterval(drawFluid,120);
+
+    document.getElementById("mode").onclick = () => {
+      isWater = !isWater;
+    };
+  </script>
+</body>
+</html>
