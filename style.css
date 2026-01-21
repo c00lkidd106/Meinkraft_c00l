@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  background: #202020;
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+#menu, .panel {
+  margin-top: 100px;
+}
+
+.title {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+.menu-btn {
+  display: block;
+  margin: 10px auto;
+  padding: 15px 40px;
+  font-size: 20px;
+  background: #c6c6c6;
+  border: 3px solid #555;
+  cursor: pointer;
+}
+
+.menu-btn:hover {
+  background: #e0e0e0;
+}
+
+.menu-btn.disabled {
+  background: #555;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.panel input[type="text"] {
+  padding: 8px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  image-rendering: pixelated;
+}
