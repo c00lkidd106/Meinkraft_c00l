@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Sand Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Sand (Minecraft-Alpha-Stil, 16×16)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawSand() {
+      ctx.fillStyle = "#e4e2b8";
+      ctx.fillRect(0, 0, 16, 16);
+
+      for (let i = 0; i < 35; i++) {
+        ctx.fillStyle = "#d6d3a4";
+        ctx.fillRect((Math.random()*16)|0, (Math.random()*16)|0, 1, 1);
+      }
+
+      for (let i = 0; i < 20; i++) {
+        ctx.fillStyle = "#f2f0c8";
+        ctx.fillRect((Math.random()*16)|0, (Math.random()*16)|0, 1, 1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawSand;
+    drawSand();
+  </script>
+</body>
+</html>
