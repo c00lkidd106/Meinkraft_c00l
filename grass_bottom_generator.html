@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Grass Bottom (Dirt) Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Grasblock Unterseite (Dirt, Alpha-Stil, 16×16)</h3>
+  <p>Klick auf „Neu generieren“, dann Rechtsklick auf das Bild → „Bild speichern unter…“</p>
+  <button id="regen">Neu generieren</button>
+  <br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawDirt() {
+      // Grundfarbe (Dirt)
+      ctx.fillStyle = "#8b5a2b";
+      ctx.fillRect(0, 0, 16, 16);
+
+      // Dunklere Noise-Pixel
+      for (let i = 0; i < 40; i++) {
+        ctx.fillStyle = "#6b3f1f";
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+        ctx.fillRect(x, y, 1, 1);
+      }
+
+      // Hellere Pixel für Alpha-Feeling
+      for (let i = 0; i < 20; i++) {
+        ctx.fillStyle = "#a06b3a";
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+        ctx.fillRect(x, y, 1, 1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawDirt;
+    drawDirt();
+  </script>
+</body>
+</html>
