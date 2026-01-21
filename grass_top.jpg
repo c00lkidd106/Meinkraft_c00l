@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Grass Top Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Grass-Block oben (Minecraft-Alpha-Stil, 16×16)</h3>
+  <p>Klick auf „Neu generieren“, dann Rechtsklick auf das Bild → „Bild speichern unter…“</p>
+  <button id="regen">Neu generieren</button>
+  <br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawGrassTop() {
+      // Grundfarbe
+      ctx.fillStyle = "#3cb043";
+      ctx.fillRect(0,0,16,16);
+
+      // dunklere Flecken (Alpha-Noise)
+      for (let i = 0; i < 40; i++) {
+        ctx.fillStyle = "#2b7a32";
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+        ctx.fillRect(x,y,1,1);
+      }
+
+      // ein paar hellere Pixel
+      for (let i = 0; i < 20; i++) {
+        ctx.fillStyle = "#4fd85a";
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+        ctx.fillRect(x,y,1,1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawGrassTop;
+    drawGrassTop();
+  </script>
+</body>
+</html>
