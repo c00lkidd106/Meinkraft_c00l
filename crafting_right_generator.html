@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Crafting Right Generator</title>
+<style>
+  body {
+    background: #202020;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+  }
 
+  #canvas {
+    border: 3px solid #555;
+    margin-top: 20px;
+    image-rendering: pixelated;
+  }
+
+  .btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #c6c6c6;
+    border: 3px solid #555;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .btn:hover {
+    background: #e0e0e0;
+  }
+</style>
+</head>
+<body>
+
+<h1>Crafting Right Generator</h1>
+<p>Klicke auf die Felder, um sie zu füllen oder zu löschen.</p>
+
+<canvas id="canvas" width="192" height="192"></canvas>
+
+<br>
+<button class="btn" onclick="downloadPNG()">Download PNG</button>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const size = 64; // jedes Feld 64×64
+let grid = [
+  [0,0,0],
+  [0,0,0],
+  [0,0,0]
+];
+
+// Farben für Debug (du kannst später Texturen einbauen)
+const colors = [
+  "#00000000", // leer
+  "#ffffff",   // weiß
+  "#ff0000",   // rot
+  "#00ff00",   // grün
+  "#0000ff",   // blau
+  "#ffff00",   // gelb
+  "#ff00ff",   // pink
+  "#00ffff"    // cyan
+];
+
+function drawGrid() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  for (let y = 0; y < 3; y++) {
+    for (let x = 0; x < 3; x++) {
+      ctx.fillStyle = colors[grid[y][x]];
+      ctx.fillRect(x * size, y * size, size, size);
+
+      ctx.strokeStyle = "#555";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(x * size, y * size, size, size);
+    }
+  }
+}
+
+canvas.addEventListener("click", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+
+  const gx = Math.floor(mx / size);
+  const gy = Math.floor(my / size);
+
+  grid[gy][gx] = (grid[gy][gx] + 1) % colors.length;
+
+  drawGrid();
+});
+
+function downloadPNG() {
+  const link = document.createElement("a");
+  link.download = "crafting_right.png";
+  link.href = canvas.toDataURL();
+  link.click();
+}
+
+drawGrid();
+</script>
+
+</body>
+</html>
