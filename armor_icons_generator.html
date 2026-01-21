@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Armor Icons Alpha</title>
+</head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+  <h3>Armor Icons (Minecraft-Alpha-Stil)</h3>
+
+  <canvas id="c" width="48" height="16"
+    style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawArmor() {
+      function armor(x) {
+        ctx.fillStyle = "#d0d0d0";
+        ctx.fillRect(x+2,2,8,2);
+        ctx.fillRect(x+1,4,10,2);
+        ctx.fillRect(x+1,6,10,2);
+        ctx.fillRect(x+3,8,6,2);
+      }
+
+      ctx.clearRect(0,0,48,16);
+
+      armor(0);
+      armor(16);
+      armor(32);
+    }
+
+    drawArmor();
+  </script>
+</body>
+</html>
