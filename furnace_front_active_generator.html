@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Burning Furnace Front Alpha</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Burning Furnace Front (Minecraft-Alpha-Stil, 16×16)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+  <canvas id="c" width="16" height="16"
+    style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawBurningFront() {
+      // Grundstein
+      ctx.fillStyle = "#7f7f7f";
+      ctx.fillRect(0,0,16,16);
+
+      // Stein-Noise
+      for(let i=0;i<40;i++){
+        ctx.fillStyle = "#5f5f5f";
+        ctx.fillRect((Math.random()*16)|0,(Math.random()*16)|0,1,1);
+      }
+
+      // Rahmen oben/unten
+      ctx.fillStyle = "#3a3a3a";
+      ctx.fillRect(2,3,12,3);
+      ctx.fillRect(2,10,12,3);
+
+      // Feuerbereich
+      ctx.fillStyle = "#1f1f1f";
+      ctx.fillRect(4,6,8,5);
+
+      // Feuer – animiert wirkende Pixel
+      const fireColors = ["#ffea00","#ffb300","#ff6f00","#ff3d00","#ff9100"];
+      for(let i=0;i<25;i++){
+        ctx.fillStyle = fireColors[(Math.random()*fireColors.length)|0];
+        const x = 4 + (Math.random()*8)|0;
+        const y = 6 + (Math.random()*5)|0;
+        ctx.fillRect(x,y,1,1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawBurningFront;
+    drawBurningFront();
+  </script>
+</body>
+</html>
