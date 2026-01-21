@@ -10,6 +10,8 @@ body {
   display: none;
 }
 
+/* Hauptmenü & Panels */
+
 #menu, .panel {
   margin-top: 100px;
 }
@@ -45,12 +47,17 @@ body {
   margin-bottom: 20px;
 }
 
+/* Canvas */
+
 canvas {
   display: block;
   width: 100vw;
   height: 100vh;
   image-rendering: pixelated;
 }
+
+/* Pause-Menü */
+
 .pause-panel {
   position: absolute;
   top: 20%;
