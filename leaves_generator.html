@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaves Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Laub (Minecraft-Alpha-Stil, 16×16)</h3>
+  <p>Klick auf „Neu generieren“, dann Rechtsklick auf das Bild → „Bild speichern unter…“</p>
+  <button id="regen">Neu generieren</button>
+  <br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawLeaves() {
+      // Grundfarbe (helles Grün)
+      ctx.fillStyle = "#4caf50";
+      ctx.fillRect(0, 0, 16, 16);
+
+      // Dunklere Blätterpixel
+      for (let i = 0; i < 40; i++) {
+        ctx.fillStyle = "#2e7d32";
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+        ctx.fillRect(x, y, 1, 1);
+      }
+
+      // Sehr dunkle Schattenpixel
+      for (let i = 0; i < 20; i++) {
+        ctx.fillStyle = "#1b5e20";
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+        ctx.fillRect(x, y, 1, 1);
+      }
+
+      // Helle Highlights
+      for (let i = 0; i < 15; i++) {
+        ctx.fillStyle = "#66bb6a";
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+        ctx.fillRect(x, y, 1, 1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawLeaves;
+    drawLeaves();
+  </script>
+</body>
+</html>
