@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Glass Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Glass (Minecraft-Alpha-Stil, 16×16)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawGlass() {
+      ctx.clearRect(0,0,16,16);
+
+      ctx.fillStyle = "rgba(180,220,255,0.35)";
+      ctx.fillRect(0,0,16,16);
+
+      ctx.strokeStyle = "rgba(210,240,255,0.8)";
+      ctx.strokeRect(0.5,0.5,15,15);
+
+      ctx.strokeStyle = "rgba(230,250,255,0.9)";
+      ctx.beginPath();
+      ctx.moveTo(3,3); ctx.lineTo(7,3); ctx.lineTo(3,7); ctx.closePath();
+      ctx.stroke();
+
+      for (let i=0;i<10;i++){
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
+        ctx.fillRect((Math.random()*16)|0,(Math.random()*16)|0,1,1);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawGlass;
+    drawGlass();
+  </script>
+</body>
+</html>
