@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Mossy Cobblestone Alpha Generator</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Mossy Cobblestone (Minecraft-Alpha-Stil, 16×16)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+  <canvas id="c" width="16" height="16"
+    style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawMossy() {
+      // Grundstein (Cobblestone)
+      ctx.fillStyle = "#7f7f7f";
+      ctx.fillRect(0,0,16,16);
+
+      // Dunkle Steinklumpen
+      for (let i = 0; i < 45; i++) {
+        ctx.fillStyle = "#5a5a5a";
+        ctx.fillRect((Math.random()*16)|0, (Math.random()*16)|0, 1, 1);
+      }
+
+      // Sehr dunkle Schatten
+      for (let i = 0; i < 25; i++) {
+        ctx.fillStyle = "#3a3a3a";
+        ctx.fillRect((Math.random()*16)|0, (Math.random()*16)|0, 1, 1);
+      }
+
+      // Helle Highlights
+      for (let i = 0; i < 20; i++) {
+        ctx.fillStyle = "#9e9e9e";
+        ctx.fillRect((Math.random()*16)|0, (Math.random()*16)|0, 1, 1);
+      }
+
+      // Moos (verschiedene Grüntöne)
+      const moss = ["#4f8a3f", "#3f6f2f", "#6aa84f", "#2e5a24"];
+
+      for (let i = 0; i < 35; i++) {
+        ctx.fillStyle = moss[(Math.random()*moss.length)|0];
+        const x = (Math.random()*16)|0;
+        const y = (Math.random()*16)|0;
+
+        // Moos nur auf ca. 40% der Fläche
+        if (Math.random() < 0.4) {
+          ctx.fillRect(x, y, 1, 1);
+        }
+      }
+    }
+
+    document.getElementById("regen").onclick = drawMossy;
+    drawMossy();
+  </script>
+</body>
+</html>
