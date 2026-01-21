@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Chest Top Alpha</title>
+</head>
+<body style="background:#222;color:#fff;font-family:sans-serif;">
+  <h3>Chest Top (Minecraft-Alpha-Stil, 16×16)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+  <canvas id="c" width="16" height="16" style="image-rendering:pixelated;border:2px solid #555;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function woodBase() {
+      ctx.fillStyle = "#b07a3f";
+      ctx.fillRect(0,0,16,16);
+
+      for(let i=0;i<40;i++){
+        ctx.fillStyle = "#8a5a2f";
+        ctx.fillRect((Math.random()*16)|0,(Math.random()*16)|0,1,1);
+      }
+      for(let i=0;i<20;i++){
+        ctx.fillStyle = "#d8a56a";
+        ctx.fillRect((Math.random()*16)|0,(Math.random()*16)|0,1,1);
+      }
+    }
+
+    function drawTop() {
+      woodBase();
+
+      ctx.fillStyle = "#5a3a1f";
+      ctx.fillRect(0,5,16,1);
+    }
+
+    document.getElementById("regen").onclick = drawTop;
+    drawTop();
+  </script>
+</body>
+</html>
