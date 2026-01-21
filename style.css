@@ -51,3 +51,29 @@ canvas {
   height: 100vh;
   image-rendering: pixelated;
 }
+.pause-panel {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 30, 0.9);
+  padding: 30px;
+  border: 3px solid #555;
+  width: 300px;
+  text-align: center;
+}
+
+.pause-panel button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 18px;
+  background: #c6c6c6;
+  border: 3px solid #555;
+  cursor: pointer;
+}
+
+.pause-panel button:hover {
+  background: #e0e0e0;
+}
