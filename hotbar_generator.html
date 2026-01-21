@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotbar Alpha Generator</title>
+</head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+  <h3>Hotbar (Minecraft-Alpha-Stil)</h3>
+  <button id="regen">Neu generieren</button><br><br>
+
+  <canvas id="c" width="182" height="22"
+    style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawHotbar() {
+      ctx.fillStyle = "#c6c6c6";
+      ctx.fillRect(0,0,182,22);
+
+      ctx.fillStyle = "#8b8b8b";
+      ctx.fillRect(2,2,178,18);
+
+      ctx.fillStyle = "#373737";
+      ctx.fillRect(4,4,174,14);
+
+      ctx.strokeStyle = "#8b8b8b";
+      for(let i=0;i<9;i++){
+        const x = 4 + i*20;
+        ctx.strokeRect(x+0.5,4.5,18,14);
+      }
+    }
+
+    document.getElementById("regen").onclick = drawHotbar;
+    drawHotbar();
+  </script>
+</body>
+</html>
