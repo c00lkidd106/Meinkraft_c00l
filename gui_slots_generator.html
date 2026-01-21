@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>GUI Slots Alpha</title>
+</head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+  <h3>GUI Slots (Minecraft-Alpha-Stil)</h3>
+
+  <canvas id="c" width="162" height="54"
+    style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawSlots() {
+      ctx.fillStyle = "#c6c6c6";
+      ctx.fillRect(0,0,162,54);
+
+      ctx.fillStyle = "#8b8b8b";
+      ctx.fillRect(2,2,158,50);
+
+      ctx.fillStyle = "#373737";
+      ctx.fillRect(4,4,154,46);
+
+      ctx.strokeStyle = "#8b8b8b";
+      for(let row=0; row<3; row++){
+        for(let col=0; col<9; col++){
+          const x = 4 + col*18;
+          const y = 4 + row*18;
+          ctx.strokeRect(x+0.5,y+0.5,16,16);
+        }
+      }
+    }
+
+    drawSlots();
+  </script>
+</body>
+</html>
