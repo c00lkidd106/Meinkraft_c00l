@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Heart Icons Alpha</title>
+</head>
+<body style="background:#111;color:#fff;font-family:sans-serif;">
+  <h3>Health Icons (Minecraft-Alpha-Stil)</h3>
+
+  <canvas id="c" width="48" height="16"
+    style="image-rendering:pixelated;border:2px solid #555;background:#000;"></canvas>
+
+  <script>
+    const c = document.getElementById("c");
+    const ctx = c.getContext("2d");
+
+    function drawHearts() {
+      function heart(x) {
+        ctx.fillStyle = "#aa0000";
+        ctx.fillRect(x+2,2,4,2);
+        ctx.fillRect(x+6,2,4,2);
+        ctx.fillRect(x+1,4,10,2);
+        ctx.fillRect(x+2,6,8,2);
+        ctx.fillRect(x+4,8,4,2);
+      }
+
+      ctx.clearRect(0,0,48,16);
+
+      heart(0);
+      heart(16);
+      heart(32);
+    }
+
+    drawHearts();
+  </script>
+</body>
+</html>
