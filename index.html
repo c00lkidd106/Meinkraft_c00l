@@ -7,6 +7,7 @@
 </head>
 <body>
 
+<!-- Hauptmenü -->
 <div id="menu">
   <h1 class="title">MEINKRAFT_c00l</h1>
 
@@ -15,8 +16,10 @@
   <button class="menu-btn" onclick="openSettings()">Settings</button>
 </div>
 
+<!-- Singleplayer-Menü -->
 <div id="singleplayer" class="panel hidden">
   <h2>Neue Welt erstellen</h2>
+
   <label>Weltname:</label>
   <input id="worldName" type="text" placeholder="Meine Welt">
 
@@ -27,6 +30,7 @@
   <button onclick="backToMenu()">Zurück</button>
 </div>
 
+<!-- Settings im Hauptmenü -->
 <div id="settings" class="panel hidden">
   <h2>Einstellungen</h2>
 
@@ -42,10 +46,46 @@
   <button onclick="backToMenu()">Zurück</button>
 </div>
 
-  <script src="music.js"></script>
-  
+<!-- Spiel-Canvas -->
 <canvas id="gameCanvas" class="hidden"></canvas>
 
+<!-- Pause-Menü -->
+<div id="pauseMenu" class="hidden pause-panel">
+  <h2>Pause</h2>
+
+  <button onclick="resumeGame()">Weiter</button>
+  <button onclick="saveAndQuit()">Speichern & Verlassen</button>
+  <button onclick="openPauseOptions()">Optionen</button>
+  <button onclick="openDifficulty()">Schwierigkeit</button>
+</div>
+
+<!-- Pause-Optionen -->
+<div id="pauseOptions" class="hidden pause-panel">
+  <h2>Optionen</h2>
+
+  <label>Sound:</label>
+  <input id="optSound" type="range" min="0" max="100" value="50">
+
+  <label>Musik:</label>
+  <input id="optMusic" type="range" min="0" max="100" value="50">
+
+  <button onclick="backToPause()">Zurück</button>
+</div>
+
+<!-- Schwierigkeit -->
+<div id="difficultyMenu" class="hidden pause-panel">
+  <h2>Schwierigkeit</h2>
+
+  <button onclick="setDifficulty('peaceful')">Friedlich</button>
+  <button onclick="setDifficulty('easy_no_mobs')">Einfach (keine Mobs)</button>
+  <button onclick="setDifficulty('easy')">Einfach 2 (mit Mobs)</button>
+  <button onclick="setDifficulty('normal')">Normal</button>
+  <button onclick="setDifficulty('hard')">Schwer</button>
+
+  <button onclick="backToPause()">Zurück</button>
+</div>
+
+<script src="music.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
