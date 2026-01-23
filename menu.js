@@ -1,90 +1,146 @@
-// ===============================
-//   MENÜ NAVIGATION
-// ===============================
+/* ===============================
+   GLOBAL
+=============================== */
 
-function showMenu(id) {
-    document.querySelectorAll(".menu").forEach(m => m.classList.add("hidden"));
-    document.getElementById(id).classList.remove("hidden");
+body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow: hidden;
 }
 
-// ===============================
-//   HAUPTMENÜ → EINZELSPIELER
-// ===============================
+.hidden {
+    display: none;
+}
 
-document.getElementById("btn-singleplayer").onclick = () => {
-    showMenu("singleplayer-menu");
-};
+/* ===============================
+   MENÜ CONTAINER
+=============================== */
 
-// ===============================
-//   EINZELSPIELER → WELT ERSTELLEN
-// ===============================
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.65);
+    border: 2px solid #00ff88;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px #00ff88;
+}
 
-document.getElementById("btn-create-world").onclick = () => {
-    showMenu("create-world-menu");
-};
+/* ===============================
+   TITEL
+=============================== */
 
-// ===============================
-//   WELT STARTEN (3D + Musik + Chunks)
-// ===============================
+.menu h1,
+.menu h2 {
+    margin: 0 0 20px 0;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff88;
+}
 
-document.getElementById("btn-start-world").onclick = () => {
-    const name = document.getElementById("world-name").value || "Neue Welt";
-    localStorage.setItem("worldName", name);
+/* ===============================
+   BUTTONS
+=============================== */
 
-    let seed = prompt("Seed eingeben (leer = zufällig):");
-    if (!seed || seed.trim() === "") {
-        seed = Math.random().toString();
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #00ff88;
+    border-radius: 6px;
+    background: #003322;
+    color: #00ffcc;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+button:hover {
+    background: #005533;
+    color: white;
+    box-shadow: 0 0 10px #00ff88;
+}
+
+button:active {
+    background: #00aa66;
+}
+
+/* ===============================
+   BACK BUTTON
+=============================== */
+
+.back-btn {
+    margin-top: 20px;
+    background: #222;
+    border-color: #888;
+    color: #ccc;
+}
+
+.back-btn:hover {
+    background: #444;
+    color: white;
+    box-shadow: 0 0 10px #666;
+}
+
+/* ===============================
+   INPUT FELDER
+=============================== */
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 12px 0;
+    font-size: 16px;
+    border: 2px solid #00ff88;
+    border-radius: 6px;
+    background: #002218;
+    color: #00ffcc;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    background: #003322;
+    box-shadow: 0 0 10px #00ff88;
+}
+
+/* ===============================
+   DIFFICULTY BUTTONS
+=============================== */
+
+.diff-btn {
+    background: #222;
+    border-color: #00ff88;
+    color: #00ffcc;
+}
+
+.diff-btn:hover {
+    background: #004422;
+    color: white;
+}
+
+/* ===============================
+   RESPONSIVE (Mobile)
+=============================== */
+
+@media (max-width: 600px) {
+    .menu {
+        width: 90%;
+        padding: 20px;
     }
 
-    // Menü ausblenden
-    document.querySelectorAll(".menu").forEach(m => m.classList.add("hidden"));
-
-    // 3D Engine starten
-    init3D();
-
-    // Musik starten
-    startMusicSystem();
-
-    // Welt generieren (4x4 Chunks)
-    const radius = 4;
-    for (let cx = 0; cx < radius; cx++) {
-        for (let cz = 0; cz < radius; cz++) {
-            const chunk = generateFullChunk(seed, cx, cz);
-            buildChunkMesh(chunk, cx, cz);
-        }
+    button {
+        font-size: 16px;
+        padding: 10px;
     }
-};
 
-// ===============================
-//   EINSTELLUNGEN
-// ===============================
-
-document.getElementById("btn-settings").onclick = () => {
-    showMenu("settings-menu");
-};
-
-// ===============================
-//   SCHWIERIGKEIT
-// ===============================
-
-document.getElementById("btn-difficulty").onclick = () => {
-    showMenu("difficulty-menu");
-};
-
-document.querySelectorAll(".diff-btn").forEach(btn => {
-    btn.onclick = () => {
-        const diff = btn.dataset.diff;
-        localStorage.setItem("difficulty", diff);
-    };
-});
-
-// ===============================
-//   ZURÜCK-BUTTONS
-// ===============================
-
-document.querySelectorAll(".back-btn").forEach(btn => {
-    btn.onclick = () => {
-        const target = btn.dataset.back;
-        showMenu(target);
-    };
-});
+    input[type="text"] {
+        font-size: 14px;
+    }
+}
