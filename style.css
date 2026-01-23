@@ -1,86 +1,176 @@
+/* ============================================
+   GLOBAL GAME UI STYLE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  background: #202020;
-  font-family: sans-serif;
-  color: white;
-  text-align: center;
+    background: #0c0c0c;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+/* Hintergrund-Vignette */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.9) 70%);
+    pointer-events: none;
+}
+
+/* Leichte Noise-Textur */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23000000'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff22'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* ============================================
+   MENÜ-CONTAINER
+   ============================================ */
+
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 500px;
+    padding: 20px;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
-/* Hauptmenü & Panels */
+/* ============================================
+   TITEL
+   ============================================ */
 
-#menu, .panel {
-  margin-top: 100px;
+.menu h1 {
+    font-size: 48px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px #ffffff55;
 }
 
-.title {
-  font-size: 48px;
-  margin-bottom: 40px;
-}
+/* ============================================
+   BUTTONS
+   ============================================ */
 
 .menu-btn {
-  display: block;
-  margin: 10px auto;
-  padding: 15px 40px;
-  font-size: 20px;
-  background: #c6c6c6;
-  border: 3px solid #555;
-  cursor: pointer;
+    width: 320px;
+    padding: 15px;
+    margin: 12px auto;
+    display: block;
+    background: #1a1a1a;
+    border: 2px solid #555;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s ease;
+    box-shadow: 0 0 10px #000000aa;
 }
 
 .menu-btn:hover {
-  background: #e0e0e0;
+    background: #2a2a2a;
+    border-color: #888;
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #ffffff33;
 }
 
+.menu-btn:active {
+    transform: scale(0.97);
+}
+
+/* Deaktivierte Buttons */
 .menu-btn.disabled {
-  background: #555;
-  color: #999;
-  cursor: not-allowed;
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #111;
+    border-color: #333;
+    box-shadow: none;
 }
 
-.panel input[type="text"] {
-  padding: 8px;
-  width: 200px;
-  margin-bottom: 20px;
+.menu-btn.disabled:hover {
+    transform: none;
+    background: #111;
+    border-color: #333;
 }
 
-/* Canvas */
+/* ============================================
+   UNTERMENÜ-BUTTONS
+   ============================================ */
 
-canvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  image-rendering: pixelated;
+.back-btn {
+    margin-top: 30px;
+    background: #222;
+    border-color: #666;
 }
 
-/* Pause-Menü */
-
-.pause-panel {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(30, 30, 30, 0.9);
-  padding: 30px;
-  border: 3px solid #555;
-  width: 300px;
-  text-align: center;
+.back-btn:hover {
+    background: #333;
+    border-color: #999;
 }
 
-.pause-panel button {
-  display: block;
-  width: 80%;
-  margin: 10px auto;
-  padding: 10px;
-  font-size: 18px;
-  background: #c6c6c6;
-  border: 3px solid #555;
-  cursor: pointer;
+/* ============================================
+   EINSTELLUNGEN-SLIDER
+   ============================================ */
+
+.settings-slider {
+    width: 300px;
+    margin: 20px auto;
 }
 
-.pause-panel button:hover {
-  background: #e0e0e0;
+.settings-slider label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.settings-slider input[type="range"] {
+    width: 100%;
+    appearance: none;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+    outline: none;
+}
+
+.settings-slider input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #888;
+    transition: 0.2s;
+}
+
+.settings-slider input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #eee;
+}
+
+/* ============================================
+   ANIMATIONEN
+   ============================================ */
+
+.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -48%); }
+    to   { opacity: 1; transform: translate(-50%, -50%); }
 }
