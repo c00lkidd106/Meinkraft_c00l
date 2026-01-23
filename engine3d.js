@@ -1,4 +1,13 @@
+// ===============================================
+//  3D ENGINE + PLAYER + WORLD RENDERING
+// ===============================================
+
 let scene, camera, renderer;
+let player;
+
+// ===============================================
+//  INIT 3D ENGINE
+// ===============================================
 
 function init3D() {
     scene = new THREE.Scene();
@@ -14,29 +23,41 @@ function init3D() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    camera.position.set(40, 40, 40);
-    camera.lookAt(0, 0, 0);
-
+    // Licht
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(50, 100, 50);
     scene.add(light);
 
+    // Spieler erstellen
+    player = new Player(camera);
+
     animate();
 }
 
+// ===============================================
+//  MAIN LOOP
+// ===============================================
+
 function animate() {
     requestAnimationFrame(animate);
+
+    // Player Movement + Kamera
+    if (player) {
+        player.update();
+    }
+
     renderer.render(scene, camera);
 }
 
 // ===============================================
-//  CHUNK MESH
+//  CHUNK MESH BUILDER
 // ===============================================
 
 function buildChunkMesh(chunk, cx, cz) {
     const group = new THREE.Group();
 
     const cubeGeo = new THREE.BoxGeometry(1, 1, 1);
+
     const materials = {
         grass:   new THREE.MeshLambertMaterial({ color: 0x00aa00 }),
         dirt:    new THREE.MeshLambertMaterial({ color: 0x8b4513 }),
@@ -57,12 +78,15 @@ function buildChunkMesh(chunk, cx, cz) {
                 if (block === "air") continue;
 
                 const mat = materials[block] || materials.stone;
+
                 const mesh = new THREE.Mesh(cubeGeo, mat);
                 mesh.position.set(
                     cx * CHUNK_SIZE + x,
                     y,
                     cz * CHUNK_SIZE + z
                 );
+
+                mesh.userData.blockType = block;
 
                 group.add(mesh);
             }
