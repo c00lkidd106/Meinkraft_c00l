@@ -6,7 +6,7 @@
     const mainMenu = document.getElementById("main-menu");
 
     // ===============================
-    // 1. Prüfen, ob Zugang bereits erlaubt
+    // 1. Zugang bereits erlaubt?
     // ===============================
     if (localStorage.getItem("access_granted") === "true") {
         // Code-Screen ausblenden
@@ -16,9 +16,11 @@
         // Hauptmenü anzeigen
         mainMenu.classList.remove("hidden");
     } else {
-        // Alle Menüs außer Code-Screen verstecken
+        // Nur Code-Screen anzeigen, alles andere verstecken
         document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") m.classList.add("hidden");
+            if (m.id !== "code-screen") {
+                m.classList.add("hidden");
+            }
         });
     }
 
