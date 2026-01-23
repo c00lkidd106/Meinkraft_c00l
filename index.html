@@ -1,4 +1,6 @@
 <script>
+    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
+
     const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
 
     const codeScreen = document.getElementById("code-screen");
@@ -8,19 +10,19 @@
     // ===============================
     // 1. Zugang bereits erlaubt?
     // ===============================
-    if (localStorage.getItem("access_granted") === "true") {
-        // Code-Screen ausblenden
+    function showMainMenu() {
+        alert("Hauptmenü wird angezeigt!"); // TEST 2
         codeScreen.style.display = "none";
         codeBg.style.display = "none";
-
-        // Hauptmenü anzeigen
         mainMenu.classList.remove("hidden");
+    }
+
+    if (localStorage.getItem("access_granted") === "true") {
+        showMainMenu();
     } else {
-        // Nur Code-Screen anzeigen, alles andere verstecken
+        // Nur Code-Screen anzeigen
         document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") {
-                m.classList.add("hidden");
-            }
+            if (m.id !== "code-screen") m.classList.add("hidden");
         });
     }
 
@@ -31,20 +33,227 @@
         const input = document.getElementById("access-code").value.trim();
 
         if (input === SECRET_CODE) {
-            // Zugang speichern
+            alert("Code korrekt! Menü wird geladen."); // TEST 3
+
             localStorage.setItem("access_granted", "true");
-
-            // Code-Screen ausblenden
-            codeScreen.style.display = "none";
-            codeBg.style.display = "none";
-
-            // Hauptmenü anzeigen
-            mainMenu.classList.remove("hidden");
+            showMainMenu();
         } else {
             document.getElementById("code-error").style.display = "block";
         }
     });
-</script>
-<script>
-    alert("JS läuft!");
+</script><script>
+    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
+
+    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
+
+    const codeScreen = document.getElementById("code-screen");
+    const codeBg = document.getElementById("code-screen-bg");
+    const mainMenu = document.getElementById("main-menu");
+
+    // ===============================
+    // 1. Zugang bereits erlaubt?
+    // ===============================
+    function showMainMenu() {
+        alert("Hauptmenü wird angezeigt!"); // TEST 2
+        codeScreen.style.display = "none";
+        codeBg.style.display = "none";
+        mainMenu.classList.remove("hidden");
+    }
+
+    if (localStorage.getItem("access_granted") === "true") {
+        showMainMenu();
+    } else {
+        // Nur Code-Screen anzeigen
+        document.querySelectorAll(".menu").forEach(m => {
+            if (m.id !== "code-screen") m.classList.add("hidden");
+        });
+    }
+
+    // ===============================
+    // 2. Code prüfen
+    // ===============================
+    document.getElementById("btn-check-code").addEventListener("click", () => {
+        const input = document.getElementById("access-code").value.trim();
+
+        if (input === SECRET_CODE) {
+            alert("Code korrekt! Menü wird geladen."); // TEST 3
+
+            localStorage.setItem("access_granted", "true");
+            showMainMenu();
+        } else {
+            document.getElementById("code-error").style.display = "block";
+        }
+    });
+</script><script>
+    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
+
+    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
+
+    const codeScreen = document.getElementById("code-screen");
+    const codeBg = document.getElementById("code-screen-bg");
+    const mainMenu = document.getElementById("main-menu");
+
+    // ===============================
+    // 1. Zugang bereits erlaubt?
+    // ===============================
+    function showMainMenu() {
+        alert("Hauptmenü wird angezeigt!"); // TEST 2
+        codeScreen.style.display = "none";
+        codeBg.style.display = "none";
+        mainMenu.classList.remove("hidden");
+    }
+
+    if (localStorage.getItem("access_granted") === "true") {
+        showMainMenu();
+    } else {
+        // Nur Code-Screen anzeigen
+        document.querySelectorAll(".menu").forEach(m => {
+            if (m.id !== "code-screen") m.classList.add("hidden");
+        });
+    }
+
+    // ===============================
+    // 2. Code prüfen
+    // ===============================
+    document.getElementById("btn-check-code").addEventListener("click", () => {
+        const input = document.getElementById("access-code").value.trim();
+
+        if (input === SECRET_CODE) {
+            alert("Code korrekt! Menü wird geladen."); // TEST 3
+
+            localStorage.setItem("access_granted", "true");
+            showMainMenu();
+        } else {
+            document.getElementById("code-error").style.display = "block";
+        }
+    });
+</script><script>
+    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
+
+    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
+
+    const codeScreen = document.getElementById("code-screen");
+    const codeBg = document.getElementById("code-screen-bg");
+    const mainMenu = document.getElementById("main-menu");
+
+    // ===============================
+    // 1. Zugang bereits erlaubt?
+    // ===============================
+    function showMainMenu() {
+        alert("Hauptmenü wird angezeigt!"); // TEST 2
+        codeScreen.style.display = "none";
+        codeBg.style.display = "none";
+        mainMenu.classList.remove("hidden");
+    }
+
+    if (localStorage.getItem("access_granted") === "true") {
+        showMainMenu();
+    } else {
+        // Nur Code-Screen anzeigen
+        document.querySelectorAll(".menu").forEach(m => {
+            if (m.id !== "code-screen") m.classList.add("hidden");
+        });
+    }
+
+    // ===============================
+    // 2. Code prüfen
+    // ===============================
+    document.getElementById("btn-check-code").addEventListener("click", () => {
+        const input = document.getElementById("access-code").value.trim();
+
+        if (input === SECRET_CODE) {
+            alert("Code korrekt! Menü wird geladen."); // TEST 3
+
+            localStorage.setItem("access_granted", "true");
+            showMainMenu();
+        } else {
+            document.getElementById("code-error").style.display = "block";
+        }
+    });
+</script><script>
+    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
+
+    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
+
+    const codeScreen = document.getElementById("code-screen");
+    const codeBg = document.getElementById("code-screen-bg");
+    const mainMenu = document.getElementById("main-menu");
+
+    // ===============================
+    // 1. Zugang bereits erlaubt?
+    // ===============================
+    function showMainMenu() {
+        alert("Hauptmenü wird angezeigt!"); // TEST 2
+        codeScreen.style.display = "none";
+        codeBg.style.display = "none";
+        mainMenu.classList.remove("hidden");
+    }
+
+    if (localStorage.getItem("access_granted") === "true") {
+        showMainMenu();
+    } else {
+        // Nur Code-Screen anzeigen
+        document.querySelectorAll(".menu").forEach(m => {
+            if (m.id !== "code-screen") m.classList.add("hidden");
+        });
+    }
+
+    // ===============================
+    // 2. Code prüfen
+    // ===============================
+    document.getElementById("btn-check-code").addEventListener("click", () => {
+        const input = document.getElementById("access-code").value.trim();
+
+        if (input === SECRET_CODE) {
+            alert("Code korrekt! Menü wird geladen."); // TEST 3
+
+            localStorage.setItem("access_granted", "true");
+            showMainMenu();
+        } else {
+            document.getElementById("code-error").style.display = "block";
+        }
+    });
+</script><script>
+    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
+
+    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
+
+    const codeScreen = document.getElementById("code-screen");
+    const codeBg = document.getElementById("code-screen-bg");
+    const mainMenu = document.getElementById("main-menu");
+
+    // ===============================
+    // 1. Zugang bereits erlaubt?
+    // ===============================
+    function showMainMenu() {
+        alert("Hauptmenü wird angezeigt!"); // TEST 2
+        codeScreen.style.display = "none";
+        codeBg.style.display = "none";
+        mainMenu.classList.remove("hidden");
+    }
+
+    if (localStorage.getItem("access_granted") === "true") {
+        showMainMenu();
+    } else {
+        // Nur Code-Screen anzeigen
+        document.querySelectorAll(".menu").forEach(m => {
+            if (m.id !== "code-screen") m.classList.add("hidden");
+        });
+    }
+
+    // ===============================
+    // 2. Code prüfen
+    // ===============================
+    document.getElementById("btn-check-code").addEventListener("click", () => {
+        const input = document.getElementById("access-code").value.trim();
+
+        if (input === SECRET_CODE) {
+            alert("Code korrekt! Menü wird geladen."); // TEST 3
+
+            localStorage.setItem("access_granted", "true");
+            showMainMenu();
+        } else {
+            document.getElementById("code-error").style.display = "block";
+        }
+    });
 </script>
