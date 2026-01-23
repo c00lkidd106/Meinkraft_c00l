@@ -1,206 +1,193 @@
-/* ============================================
-   GLOBAL GAME UI STYLE
-   ============================================ */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ===============================
+   GLOBAL
+=============================== */
 
 body {
-    background: #0c0c0c;
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: #111;
+    font-family: Arial, sans-serif;
     color: white;
+    overflow: hidden;
 }
 
-/* Hintergrund-Vignette */
-body::before {
-    content: "";
+/* Versteckt Menüs */
+.hidden {
+    display: none;
+}
+
+/* ===============================
+   CODE-SCREEN HINTERGRUND
+=============================== */
+
+#code-screen-bg {
     position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.9) 70%);
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 1;
 }
 
-/* Leichte Noise-Textur */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23000000'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff22'/%3E%3C/svg%3E");
-    opacity: 0.15;
-    pointer-events: none;
-}
-
-/* ============================================
-   MENÜ-CONTAINER
-   ============================================ */
+/* ===============================
+   MENÜ CONTAINER
+=============================== */
 
 .menu {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid #00ff88;
+    border-radius: 10px;
     text-align: center;
-    width: 500px;
-    padding: 20px;
+    box-shadow: 0 0 20px #00ff88;
+    z-index: 9999; /* WICHTIG */
 }
 
-.hidden {
-    display: none;
-}
+/* ===============================
+   LOGO (MEINKRAFT)
+=============================== */
 
-/* ============================================
-   TITEL
-   ============================================ */
-
-.menu h1 {
+.logo {
     font-size: 48px;
-    margin-bottom: 40px;
-    text-shadow: 0 0 10px #ffffff55;
+    font-weight: 900;
+    color: #d0d0d0;
+    text-shadow:
+        3px 3px 0 #555,
+        -2px -2px 0 #888,
+        2px -2px 0 #777,
+        -2px 2px 0 #666,
+        0 0 20px #000;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    font-family: 'Arial Black', sans-serif;
 }
 
-/* ============================================
+/* ===============================
    BUTTONS
-   ============================================ */
+=============================== */
 
 .menu-btn {
-    width: 320px;
-    padding: 15px;
-    margin: 12px auto;
-    display: block;
-    background: #1a1a1a;
-    border: 2px solid #555;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #00ff88;
     border-radius: 6px;
-    transition: 0.2s ease;
-    box-shadow: 0 0 10px #000000aa;
+    background: #003322;
+    color: #00ffcc;
+    cursor: pointer;
+    transition: 0.15s;
 }
 
 .menu-btn:hover {
-    background: #2a2a2a;
-    border-color: #888;
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #ffffff33;
+    background: #005533;
+    color: white;
+    box-shadow: 0 0 10px #00ff88;
 }
 
 .menu-btn:active {
-    transform: scale(0.97);
+    background: #00aa66;
 }
 
-/* Deaktivierte Buttons */
-.menu-btn.disabled {
+.disabled {
     opacity: 0.4;
     cursor: not-allowed;
-    background: #111;
-    border-color: #333;
-    box-shadow: none;
 }
 
-.menu-btn.disabled:hover {
-    transform: none;
-    background: #111;
-    border-color: #333;
-}
-
-/* ============================================
-   UNTERMENÜ-BUTTONS
-   ============================================ */
+/* ===============================
+   BACK BUTTON
+=============================== */
 
 .back-btn {
-    margin-top: 30px;
+    margin-top: 20px;
     background: #222;
-    border-color: #666;
+    border-color: #888;
+    color: #ccc;
 }
 
 .back-btn:hover {
-    background: #333;
-    border-color: #999;
+    background: #444;
+    color: white;
+    box-shadow: 0 0 10px #666;
 }
 
-/* ============================================
-   EINSTELLUNGEN-SLIDER
-   ============================================ */
+/* ===============================
+   INPUT FELDER
+=============================== */
+
+.world-input {
+    width: 100%;
+    padding: 10px;
+    margin: 12px 0;
+    font-size: 16px;
+    border: 2px solid #00ff88;
+    border-radius: 6px;
+    background: #002218;
+    color: #00ffcc;
+}
+
+.world-input:focus {
+    outline: none;
+    background: #003322;
+    box-shadow: 0 0 10px #00ff88;
+}
+
+/* ===============================
+   SLIDER
+=============================== */
 
 .settings-slider {
-    width: 300px;
-    margin: 20px auto;
+    margin: 15px 0;
+    text-align: left;
 }
 
 .settings-slider label {
     display: block;
-    font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
-.settings-slider input[type="range"] {
+input[type="range"] {
     width: 100%;
-    appearance: none;
-    height: 6px;
-    background: #333;
-    border-radius: 3px;
-    outline: none;
 }
 
-.settings-slider input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #888;
-    transition: 0.2s;
+/* ===============================
+   DIFFICULTY BUTTONS
+=============================== */
+
+.diff-btn {
+    background: #222;
+    border-color: #00ff88;
+    color: #00ffcc;
 }
 
-.settings-slider input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    background: #eee;
-}
-
-/* ============================================
-   ANIMATIONEN
-   ============================================ */
-
-.fade-in {
-    animation: fadeIn 0.4s ease forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -48%); }
-    to   { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-/* ============================================
-   ZUGANGSCODE SCREEN
-   ============================================ */
-
-/* Schwarzer Hintergrund */
-#code-screen-bg {
-    position: fixed;
-    inset: 0;
-    background: black;
-    z-index: 9000;
-}
-
-/* Code-Screen selbst */
-#code-screen {
-    z-index: 9999;
-}
-
-/* Eingabefeld */
-.world-input {
-    width: 300px;
-    padding: 12px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    border-radius: 6px;
-    border: 2px solid #444;
-    background: #111;
+.diff-btn:hover {
+    background: #004422;
     color: white;
-    text-align: center;
+}
+
+/* ===============================
+   RESPONSIVE (Mobile)
+=============================== */
+
+@media (max-width: 600px) {
+    .menu {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .menu-btn {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .world-input {
+        font-size: 14px;
+    }
 }
