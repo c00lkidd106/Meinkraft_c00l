@@ -1,32 +1,75 @@
-<script>
-    alert("Script läuft!"); // TEST 1
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>MEINKRAFT TEST</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ==");
+<body>
 
-    const codeScreen = document.getElementById("code-screen");
-    const codeBg = document.getElementById("code-screen-bg");
-    const mainMenu = document.getElementById("main-menu");
+    <!-- TESTTEXT -->
+    <div style="color:white; font-size:32px; position:fixed; top:10px; left:10px;">
+        TEST: HTML WIRD GELADEN
+    </div>
 
-    function showMainMenu() {
-        alert("Hauptmenü wird angezeigt!"); // TEST 2
-        codeScreen.style.display = "none";
-        codeBg.style.display = "none";
-        mainMenu.classList.remove("hidden");
-    }
+    <!-- CODE SCREEN BACKGROUND -->
+    <div id="code-screen-bg"></div>
 
-    if (localStorage.getItem("access_granted") === "true") {
-        showMainMenu();
-    }
+    <!-- CODE SCREEN -->
+    <div id="code-screen" class="menu">
+        <div class="logo">MEINKRAFT</div>
+        <p>Gib den Zugangscode ein:</p>
 
-    document.getElementById("btn-check-code").addEventListener("click", () => {
-        const input = document.getElementById("access-code").value.trim();
+        <input id="access-code" class="world-input" placeholder="Code eingeben">
 
-        if (input === SECRET_CODE) {
-            alert("Code korrekt! Menü wird geladen."); // TEST 3
-            localStorage.setItem("access_granted", "true");
-            showMainMenu();
-        } else {
-            document.getElementById("code-error").style.display = "block";
+        <button id="btn-check-code" class="menu-btn">Bestätigen</button>
+
+        <p id="code-error" style="color:red; display:none;">Falscher Code!</p>
+    </div>
+
+    <!-- HAUPTMENÜ -->
+    <div id="main-menu" class="menu hidden">
+        <div class="logo">MEINKRAFT</div>
+
+        <button class="menu-btn">Welt starten</button>
+        <button class="menu-btn">Einstellungen</button>
+        <button class="menu-btn">Beenden</button>
+    </div>
+
+    <!-- DEIN TESTSCRIPT -->
+    <script>
+        alert("Script läuft!"); // TEST 1
+
+        const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ==");
+
+        const codeScreen = document.getElementById("code-screen");
+        const codeBg = document.getElementById("code-screen-bg");
+        const mainMenu = document.getElementById("main-menu");
+
+        function showMainMenu() {
+            alert("Hauptmenü wird angezeigt!"); // TEST 2
+            codeScreen.style.display = "none";
+            codeBg.style.display = "none";
+            mainMenu.classList.remove("hidden");
         }
-    });
-</script>
+
+        if (localStorage.getItem("access_granted") === "true") {
+            showMainMenu();
+        }
+
+        document.getElementById("btn-check-code").addEventListener("click", () => {
+            const input = document.getElementById("access-code").value.trim();
+
+            if (input === SECRET_CODE) {
+                alert("Code korrekt! Menü wird geladen."); // TEST 3
+                localStorage.setItem("access_granted", "true");
+                showMainMenu();
+            } else {
+                document.getElementById("code-error").style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
