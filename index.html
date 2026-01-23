@@ -6,17 +6,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- SCHWARZER HINTERGRUND FÜR CODE-SCREEN -->
+    <div id="code-screen-bg"></div>
+
+    <!-- ZUGANGSCODE -->
     <div id="code-screen" class="menu">
-    <h1>Zugangscode</h1>
-    <input type="password" id="access-code" placeholder="Code eingeben" class="world-input">
-    <button class="menu-btn" id="btn-check-code">Bestätigen</button>
-    <p id="code-error" style="color:#ff5555; margin-top:15px; display:none;">
-        Falscher Code. Diese Version wird bald öffentlich sein.
-    </p>
-</div>
+        <h1>Zugangscode</h1>
+        <input type="password" id="access-code" placeholder="Code eingeben" class="world-input">
+        <button class="menu-btn" id="btn-check-code">Bestätigen</button>
+
+        <p id="code-error" style="color:#ff5555; margin-top:15px; display:none;">
+            Falscher Code. Diese Version wird bald öffentlich sein.
+        </p>
+    </div>
 
     <!-- HAUPTMENÜ -->
-    <div id="main-menu" class="menu fade-in">
+    <div id="main-menu" class="menu hidden fade-in">
         <h1>Mein Spiel</h1>
 
         <button class="menu-btn" id="btn-singleplayer">Einzelspieler</button>
@@ -77,5 +83,35 @@
 
     <script src="klick.js"></script>
     <script src="menu.js"></script>
+
+    <!-- ZUGANGSCODE-SYSTEM -->
+    <script>
+        const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
+
+        if (localStorage.getItem("access_granted") === "true") {
+            document.getElementById("code-screen").style.display = "none";
+            document.getElementById("code-screen-bg").style.display = "none";
+        } else {
+            document.querySelectorAll(".menu").forEach(m => {
+                if (m.id !== "code-screen") m.classList.add("hidden");
+            });
+        }
+
+        document.getElementById("btn-check-code").addEventListener("click", () => {
+            const input = document.getElementById("access-code").value.trim();
+
+            if (input === SECRET_CODE) {
+                localStorage.setItem("access_granted", "true");
+
+                document.getElementById("code-screen").style.display = "none";
+                document.getElementById("code-screen-bg").style.display = "none";
+
+                document.getElementById("main-menu").classList.remove("hidden");
+            } else {
+                document.getElementById("code-error").style.display = "block";
+            }
+        });
+    </script>
+
 </body>
 </html>
