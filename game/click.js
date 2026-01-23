@@ -1,32 +1,27 @@
 // =====================================
-//   SYNTHETISCHER KLICK-SOUND (kein MP3)
+//   SYNTHETISCHER KLICK-SOUND
 // =====================================
 
 function playClick() {
     const audio = new (window.AudioContext || window.webkitAudioContext)();
-
-    // Erzeuge einen kurzen Ton
     const osc = audio.createOscillator();
     const gain = audio.createGain();
 
-    // Klick-Sound: sehr kurzer, hoher Impuls
-    osc.type = "square";        // knackiger Sound
-    osc.frequency.value = 800;  // Tonhöhe
+    osc.type = "square";
+    osc.frequency.value = 800;
 
-    gain.gain.setValueAtTime(0.3, audio.currentTime);          // Startlautstärke
-    gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + 0.05); // schnelles Ausklingen
+    gain.gain.setValueAtTime(0.3, audio.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + 0.05);
 
     osc.connect(gain);
     gain.connect(audio.destination);
 
     osc.start();
-    osc.stop(audio.currentTime + 0.05); // 50 Millisekunden
+    osc.stop(audio.currentTime + 0.05);
 }
 
-// Optional: Hover-Sound
 function playHover() {
     const audio = new (window.AudioContext || window.webkitAudioContext)();
-
     const osc = audio.createOscillator();
     const gain = audio.createGain();
 
@@ -47,14 +42,8 @@ function playHover() {
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".menu-btn").forEach(btn => {
         if (!btn.classList.contains("disabled")) {
-
-            btn.addEventListener("mouseenter", () => {
-                playHover();
-            });
-
-            btn.addEventListener("click", () => {
-                playClick();
-            });
+            btn.addEventListener("mouseenter", playHover);
+            btn.addEventListener("click", playClick);
         }
     });
 });
