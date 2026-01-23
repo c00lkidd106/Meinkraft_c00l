@@ -1,15 +1,12 @@
 <script>
-    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
+    alert("Script läuft!"); // TEST 1
 
-    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
+    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ==");
 
     const codeScreen = document.getElementById("code-screen");
     const codeBg = document.getElementById("code-screen-bg");
     const mainMenu = document.getElementById("main-menu");
 
-    // ===============================
-    // 1. Zugang bereits erlaubt?
-    // ===============================
     function showMainMenu() {
         alert("Hauptmenü wird angezeigt!"); // TEST 2
         codeScreen.style.display = "none";
@@ -19,237 +16,13 @@
 
     if (localStorage.getItem("access_granted") === "true") {
         showMainMenu();
-    } else {
-        // Nur Code-Screen anzeigen
-        document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") m.classList.add("hidden");
-        });
     }
 
-    // ===============================
-    // 2. Code prüfen
-    // ===============================
     document.getElementById("btn-check-code").addEventListener("click", () => {
         const input = document.getElementById("access-code").value.trim();
 
         if (input === SECRET_CODE) {
             alert("Code korrekt! Menü wird geladen."); // TEST 3
-
-            localStorage.setItem("access_granted", "true");
-            showMainMenu();
-        } else {
-            document.getElementById("code-error").style.display = "block";
-        }
-    });
-</script><script>
-    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
-
-    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
-
-    const codeScreen = document.getElementById("code-screen");
-    const codeBg = document.getElementById("code-screen-bg");
-    const mainMenu = document.getElementById("main-menu");
-
-    // ===============================
-    // 1. Zugang bereits erlaubt?
-    // ===============================
-    function showMainMenu() {
-        alert("Hauptmenü wird angezeigt!"); // TEST 2
-        codeScreen.style.display = "none";
-        codeBg.style.display = "none";
-        mainMenu.classList.remove("hidden");
-    }
-
-    if (localStorage.getItem("access_granted") === "true") {
-        showMainMenu();
-    } else {
-        // Nur Code-Screen anzeigen
-        document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") m.classList.add("hidden");
-        });
-    }
-
-    // ===============================
-    // 2. Code prüfen
-    // ===============================
-    document.getElementById("btn-check-code").addEventListener("click", () => {
-        const input = document.getElementById("access-code").value.trim();
-
-        if (input === SECRET_CODE) {
-            alert("Code korrekt! Menü wird geladen."); // TEST 3
-
-            localStorage.setItem("access_granted", "true");
-            showMainMenu();
-        } else {
-            document.getElementById("code-error").style.display = "block";
-        }
-    });
-</script><script>
-    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
-
-    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
-
-    const codeScreen = document.getElementById("code-screen");
-    const codeBg = document.getElementById("code-screen-bg");
-    const mainMenu = document.getElementById("main-menu");
-
-    // ===============================
-    // 1. Zugang bereits erlaubt?
-    // ===============================
-    function showMainMenu() {
-        alert("Hauptmenü wird angezeigt!"); // TEST 2
-        codeScreen.style.display = "none";
-        codeBg.style.display = "none";
-        mainMenu.classList.remove("hidden");
-    }
-
-    if (localStorage.getItem("access_granted") === "true") {
-        showMainMenu();
-    } else {
-        // Nur Code-Screen anzeigen
-        document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") m.classList.add("hidden");
-        });
-    }
-
-    // ===============================
-    // 2. Code prüfen
-    // ===============================
-    document.getElementById("btn-check-code").addEventListener("click", () => {
-        const input = document.getElementById("access-code").value.trim();
-
-        if (input === SECRET_CODE) {
-            alert("Code korrekt! Menü wird geladen."); // TEST 3
-
-            localStorage.setItem("access_granted", "true");
-            showMainMenu();
-        } else {
-            document.getElementById("code-error").style.display = "block";
-        }
-    });
-</script><script>
-    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
-
-    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
-
-    const codeScreen = document.getElementById("code-screen");
-    const codeBg = document.getElementById("code-screen-bg");
-    const mainMenu = document.getElementById("main-menu");
-
-    // ===============================
-    // 1. Zugang bereits erlaubt?
-    // ===============================
-    function showMainMenu() {
-        alert("Hauptmenü wird angezeigt!"); // TEST 2
-        codeScreen.style.display = "none";
-        codeBg.style.display = "none";
-        mainMenu.classList.remove("hidden");
-    }
-
-    if (localStorage.getItem("access_granted") === "true") {
-        showMainMenu();
-    } else {
-        // Nur Code-Screen anzeigen
-        document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") m.classList.add("hidden");
-        });
-    }
-
-    // ===============================
-    // 2. Code prüfen
-    // ===============================
-    document.getElementById("btn-check-code").addEventListener("click", () => {
-        const input = document.getElementById("access-code").value.trim();
-
-        if (input === SECRET_CODE) {
-            alert("Code korrekt! Menü wird geladen."); // TEST 3
-
-            localStorage.setItem("access_granted", "true");
-            showMainMenu();
-        } else {
-            document.getElementById("code-error").style.display = "block";
-        }
-    });
-</script><script>
-    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
-
-    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
-
-    const codeScreen = document.getElementById("code-screen");
-    const codeBg = document.getElementById("code-screen-bg");
-    const mainMenu = document.getElementById("main-menu");
-
-    // ===============================
-    // 1. Zugang bereits erlaubt?
-    // ===============================
-    function showMainMenu() {
-        alert("Hauptmenü wird angezeigt!"); // TEST 2
-        codeScreen.style.display = "none";
-        codeBg.style.display = "none";
-        mainMenu.classList.remove("hidden");
-    }
-
-    if (localStorage.getItem("access_granted") === "true") {
-        showMainMenu();
-    } else {
-        // Nur Code-Screen anzeigen
-        document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") m.classList.add("hidden");
-        });
-    }
-
-    // ===============================
-    // 2. Code prüfen
-    // ===============================
-    document.getElementById("btn-check-code").addEventListener("click", () => {
-        const input = document.getElementById("access-code").value.trim();
-
-        if (input === SECRET_CODE) {
-            alert("Code korrekt! Menü wird geladen."); // TEST 3
-
-            localStorage.setItem("access_granted", "true");
-            showMainMenu();
-        } else {
-            document.getElementById("code-error").style.display = "block";
-        }
-    });
-</script><script>
-    alert("Script läuft!"); // TEST 1: Wird beim Laden ausgeführt
-
-    const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ=="); // SV-ALPHA-2025
-
-    const codeScreen = document.getElementById("code-screen");
-    const codeBg = document.getElementById("code-screen-bg");
-    const mainMenu = document.getElementById("main-menu");
-
-    // ===============================
-    // 1. Zugang bereits erlaubt?
-    // ===============================
-    function showMainMenu() {
-        alert("Hauptmenü wird angezeigt!"); // TEST 2
-        codeScreen.style.display = "none";
-        codeBg.style.display = "none";
-        mainMenu.classList.remove("hidden");
-    }
-
-    if (localStorage.getItem("access_granted") === "true") {
-        showMainMenu();
-    } else {
-        // Nur Code-Screen anzeigen
-        document.querySelectorAll(".menu").forEach(m => {
-            if (m.id !== "code-screen") m.classList.add("hidden");
-        });
-    }
-
-    // ===============================
-    // 2. Code prüfen
-    // ===============================
-    document.getElementById("btn-check-code").addEventListener("click", () => {
-        const input = document.getElementById("access-code").value.trim();
-
-        if (input === SECRET_CODE) {
-            alert("Code korrekt! Menü wird geladen."); // TEST 3
-
             localStorage.setItem("access_granted", "true");
             showMainMenu();
         } else {
