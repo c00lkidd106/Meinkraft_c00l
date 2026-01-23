@@ -1,91 +1,73 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Meinkraft_c00l</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Game Menü</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Hauptmenü -->
-<div id="menu">
-  <h1 class="title">MEINKRAFT_c00l</h1>
+    <!-- HAUPTMENÜ -->
+    <div id="main-menu" class="menu fade-in">
+        <h1>Mein Spiel</h1>
 
-  <button class="menu-btn" onclick="openSingleplayer()">Singleplayer</button>
-  <button class="menu-btn disabled">Multiplayer</button>
-  <button class="menu-btn" onclick="openSettings()">Settings</button>
-</div>
+        <button class="menu-btn" id="btn-singleplayer">Einzelspieler</button>
+        <button class="menu-btn disabled">Mehrspieler</button>
+        <button class="menu-btn" id="btn-settings">Einstellungen</button>
+        <button class="menu-btn" id="btn-difficulty">Schwierigkeit</button>
+        <button class="menu-btn disabled">Sprache</button>
+    </div>
 
-<!-- Singleplayer-Menü -->
-<div id="singleplayer" class="panel hidden">
-  <h2>Neue Welt erstellen</h2>
+    <!-- EINZELSPIELER -->
+    <div id="singleplayer-menu" class="menu hidden">
+        <h1>Einzelspieler</h1>
 
-  <label>Weltname:</label>
-  <input id="worldName" type="text" placeholder="Meine Welt">
+        <button class="menu-btn" id="btn-create-world">Welt erstellen</button>
+        <button class="menu-btn back-btn" data-back="main-menu">Zurück</button>
+    </div>
 
-  <label>Seed (leer = zufällig):</label>
-  <input id="seedInput" type="text" placeholder="Zufällig">
+    <!-- WELT ERSTELLEN -->
+    <div id="create-world-menu" class="menu hidden">
+        <h1>Welt erstellen</h1>
 
-  <button onclick="startGame()">Welt erstellen</button>
-  <button onclick="backToMenu()">Zurück</button>
-</div>
+        <input type="text" id="world-name" placeholder="Weltname" class="world-input">
 
-<!-- Settings im Hauptmenü -->
-<div id="settings" class="panel hidden">
-  <h2>Einstellungen</h2>
+        <button class="menu-btn" id="btn-start-world">Welt starten</button>
+        <button class="menu-btn back-btn" data-back="singleplayer-menu">Zurück</button>
+    </div>
 
-  <label>Sound:</label>
-  <input id="soundSlider" type="range" min="0" max="100" value="50">
+    <!-- EINSTELLUNGEN -->
+    <div id="settings-menu" class="menu hidden">
+        <h1>Einstellungen</h1>
 
-  <label>Musik:</label>
-  <input id="musicSlider" type="range" min="0" max="100" value="50">
+        <div class="settings-slider">
+            <label>Musiklautstärke</label>
+            <input type="range" id="music-volume" min="0" max="100" value="50">
+        </div>
 
-  <label>Chunks render distance:</label>
-  <input id="chunkSlider" type="range" min="2" max="12" value="6">
+        <div class="settings-slider">
+            <label>Soundlautstärke</label>
+            <input type="range" id="sound-volume" min="0" max="100" value="70">
+        </div>
 
-  <button onclick="backToMenu()">Zurück</button>
-</div>
+        <button class="menu-btn back-btn" data-back="main-menu">Zurück</button>
+    </div>
 
-<!-- Spiel-Canvas -->
-<canvas id="gameCanvas" class="hidden"></canvas>
+    <!-- SCHWIERIGKEIT -->
+    <div id="difficulty-menu" class="menu hidden">
+        <h1>Schwierigkeit</h1>
 
-<!-- Pause-Menü -->
-<div id="pauseMenu" class="hidden pause-panel">
-  <h2>Pause</h2>
+        <button class="menu-btn diff-btn" data-diff="peaceful">Friedlich</button>
+        <button class="menu-btn diff-btn" data-diff="easy_nofight">Einfach (kein Kampf)</button>
+        <button class="menu-btn diff-btn" data-diff="easy_fight">Einfach (mit Kampf)</button>
+        <button class="menu-btn diff-btn" data-diff="normal">Normal</button>
+        <button class="menu-btn diff-btn" data-diff="hard">Schwer</button>
+        <button class="menu-btn disabled">Hardcore</button>
 
-  <button onclick="resumeGame()">Weiter</button>
-  <button onclick="saveAndQuit()">Speichern & Verlassen</button>
-  <button onclick="openPauseOptions()">Optionen</button>
-  <button onclick="openDifficulty()">Schwierigkeit</button>
-</div>
+        <button class="menu-btn back-btn" data-back="main-menu">Zurück</button>
+    </div>
 
-<!-- Pause-Optionen -->
-<div id="pauseOptions" class="hidden pause-panel">
-  <h2>Optionen</h2>
-
-  <label>Sound:</label>
-  <input id="optSound" type="range" min="0" max="100" value="50">
-
-  <label>Musik:</label>
-  <input id="optMusic" type="range" min="0" max="100" value="50">
-
-  <button onclick="backToPause()">Zurück</button>
-</div>
-
-<!-- Schwierigkeit -->
-<div id="difficultyMenu" class="hidden pause-panel">
-  <h2>Schwierigkeit</h2>
-
-  <button onclick="setDifficulty('peaceful')">Friedlich</button>
-  <button onclick="setDifficulty('easy_no_mobs')">Einfach (keine Mobs)</button>
-  <button onclick="setDifficulty('easy')">Einfach 2 (mit Mobs)</button>
-  <button onclick="setDifficulty('normal')">Normal</button>
-  <button onclick="setDifficulty('hard')">Schwer</button>
-
-  <button onclick="backToPause()">Zurück</button>
-</div>
-
-<script src="music.js"></script>
-<script src="main.js"></script>
+    <script src="klick.js"></script>
+    <script src="menu.js"></script>
 </body>
 </html>
