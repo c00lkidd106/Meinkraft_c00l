@@ -7,34 +7,64 @@ function showMenu(id) {
     document.getElementById(id).classList.remove("hidden");
 }
 
-// Hauptmenü → Einzelspieler
+// ===============================
+//   HAUPTMENÜ → EINZELSPIELER
+// ===============================
+
 document.getElementById("btn-singleplayer").onclick = () => {
     showMenu("singleplayer-menu");
 };
 
-// Einzelspieler → Welt erstellen
+// ===============================
+//   EINZELSPIELER → WELT ERSTELLEN
+// ===============================
+
 document.getElementById("btn-create-world").onclick = () => {
     showMenu("create-world-menu");
 };
 
-// Welt starten
+// ===============================
+//   WELT STARTEN
+// ===============================
+
 document.getElementById("btn-start-world").onclick = () => {
     const name = document.getElementById("world-name").value || "Neue Welt";
     localStorage.setItem("worldName", name);
-    alert("Welt wird geladen: " + name);
+
+    // Seed abfragen
+    let seed = prompt("Seed eingeben (leer = zufällig):");
+    if (!seed || seed.trim() === "") {
+        seed = Math.random().toString();
+    }
+
+    // Welt generieren
+    const world = generateWorldType("normal", seed, 200, 150);
+
+    console.log("Welt generiert:", world);
+
+    // Musik starten
+    startMusicSystem();
+
+    // Hier kannst du später das Spiel starten (Renderer etc.)
+    // startGame(world);
 };
 
-// Einstellungen öffnen
+// ===============================
+//   EINSTELLUNGEN
+// ===============================
+
 document.getElementById("btn-settings").onclick = () => {
     showMenu("settings-menu");
 };
 
-// Schwierigkeit öffnen
+// ===============================
+//   SCHWIERIGKEIT
+// ===============================
+
 document.getElementById("btn-difficulty").onclick = () => {
     showMenu("difficulty-menu");
 };
 
-// Schwierigkeit speichern
 document.querySelectorAll(".diff-btn").forEach(btn => {
     btn.onclick = () => {
         const diff = btn.dataset.diff;
@@ -42,7 +72,10 @@ document.querySelectorAll(".diff-btn").forEach(btn => {
     };
 });
 
-// Zurück-Buttons
+// ===============================
+//   ZURÜCK-BUTTONS
+// ===============================
+
 document.querySelectorAll(".back-btn").forEach(btn => {
     btn.onclick = () => {
         const target = btn.dataset.back;
