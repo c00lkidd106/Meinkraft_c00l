@@ -189,3 +189,14 @@ body::after {
     color: white;
     text-align: center;
 }
+/* Schwarzer Hintergrund nur beim Code-Screen */
+#code-screen-bg {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 9000;
+}
+
+#code-screen {
+    z-index: 9999;
+}
