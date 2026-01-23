@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Game Menü</title>
+    <title>MEINKRAFT – Alpha</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
 
     <!-- HAUPTMENÜ -->
     <div id="main-menu" class="menu hidden fade-in">
-        <h1>Mein Spiel</h1>
+        <h1 class="logo">MEINKRAFT</h1>
 
         <button class="menu-btn" id="btn-singleplayer">Einzelspieler</button>
         <button class="menu-btn disabled">Mehrspieler</button>
@@ -45,6 +45,7 @@
         <h1>Welt erstellen</h1>
 
         <input type="text" id="world-name" placeholder="Weltname" class="world-input">
+        <input type="text" id="seed-input" placeholder="Seed (leer = zufällig)" class="world-input">
 
         <button class="menu-btn" id="btn-start-world">Welt starten</button>
         <button class="menu-btn back-btn" data-back="singleplayer-menu">Zurück</button>
@@ -81,7 +82,17 @@
         <button class="menu-btn back-btn" data-back="main-menu">Zurück</button>
     </div>
 
-    <script src="klick.js"></script>
+    <!-- ========================= -->
+    <!--   ALLE SCRIPTS RICHTIG    -->
+    <!-- ========================= -->
+
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+    <script src="music.js"></script>
+    <script src="worldgen.js"></script>
+    <script src="input.js"></script>
+    <script src="player.js"></script>
+    <script src="engine3d.js"></script>
     <script src="menu.js"></script>
 
     <!-- ZUGANGSCODE-SYSTEM -->
