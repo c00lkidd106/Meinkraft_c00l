@@ -174,10 +174,25 @@ body::after {
     from { opacity: 0; transform: translate(-50%, -48%); }
     to   { opacity: 1; transform: translate(-50%, -50%); }
 }
+
+/* ============================================
+   ZUGANGSCODE SCREEN
+   ============================================ */
+
+/* Schwarzer Hintergrund */
+#code-screen-bg {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 9000;
+}
+
+/* Code-Screen selbst */
 #code-screen {
     z-index: 9999;
 }
 
+/* Eingabefeld */
 .world-input {
     width: 300px;
     padding: 12px;
@@ -188,15 +203,4 @@ body::after {
     background: #111;
     color: white;
     text-align: center;
-}
-/* Schwarzer Hintergrund nur beim Code-Screen */
-#code-screen-bg {
-    position: fixed;
-    inset: 0;
-    background: black;
-    z-index: 9000;
-}
-
-#code-screen {
-    z-index: 9999;
 }
