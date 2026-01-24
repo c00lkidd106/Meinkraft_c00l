@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <style>
-body { background: red; }
-</style>
     <meta charset="UTF-8">
     <title>MEINKRAFT TEST</title>
 
-    <!-- ===============================
-         CSS (Hintergrund + UI)
-    ================================ -->
+    <!-- Test-Hintergrund -->
+    <style>
+        body { background: red; }
+    </style>
+
+    <!-- UI / CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- ===============================
-         ENGINE: TEXTUREN + SOUNDS
-         (MÜSSEN VOR DER WELT GELADEN WERDEN)
-    ================================ -->
-<!-- <script src="game/textures/textures.js"></script> -->
-<!-- <script src="game/textures/sounds.js"></script> -->
-<!-- <script src="blockData.js"></script> -->
-<!-- <script src="inventory.js"></script> -->
-<!-- <script src="startWorld.js"></script> -->
-<!-- <script src="renderWorld.js"></script> -->
-<!-- <script src="skins.js"></script> -->
-<!-- <script src="click.js"></script> -->
-<!-- <script src="music.js"></script> -->
-<!-- <script src="textres.js"></script> -->
+    <!-- ENGINE: TEXTUREN + SOUNDS -->
+    <script src="game/textures/textures.js"></script>
+    <script src="game/textures/sounds.js"></script>
+
+    <!-- BLOCKDATEN + INVENTAR -->
+    <script src="blockData.js"></script>
+    <script src="inventory.js"></script>
+
+    <!-- WELT-GENERATOR -->
+    <script src="startWorld.js"></script>
+
+    <!-- RENDERER -->
+    <script src="renderWorld.js"></script>
+
+    <!-- SKIN-SYSTEM -->
+    <script src="skins.js"></script>
+
+    <!-- UI / MUSIK / KLICK -->
+    <script src="click.js"></script>
+    <script src="music.js"></script>
+    <script src="textres.js"></script>
 </head>
 
 <body>
@@ -81,7 +88,7 @@ body { background: red; }
     </div>
 
     <!-- ===============================
-         HAUPT-SCRIPT (MENÜ LOGIK)
+         MENÜ LOGIK
     ================================ -->
     <script>
         function playClickSafe() {
