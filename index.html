@@ -11,6 +11,9 @@
     <script src="game/textures/textures.js"></script>
     <script src="game/textures/sounds.js"></script>
 
+    <!-- SKIN-SYSTEM (liegt neben index.html) -->
+    <script src="skins.js"></script>
+
     <!-- KLICK, MUSIK, WELT -->
     <script src="click.js"></script>
     <script src="music.js"></script>
@@ -86,7 +89,7 @@
             }
         }
 
-        // Welt starten
+        // Welt starten – hier binden wir Skin + Sounds + Musik ein
         function startWorldWithSeed(seed) {
             if (typeof startWorld === "function") {
                 startWorld(seed);
@@ -94,6 +97,28 @@
                 initWorld(seed);
             } else {
                 console.log("Weltstart (Stub): Seed =", seed);
+            }
+
+            // Spieler-Typ erkennen & Skin generieren
+            if (typeof detectPlayerType === "function") {
+                detectPlayerType();
+            }
+            if (PlayerSkin && PlayerSkin.parts && PlayerSkin.parts.hand) {
+                const handCanvas = PlayerSkin.parts.hand;
+                handCanvas.style.position = "fixed";
+                handCanvas.style.right = "20px";
+                handCanvas.style.bottom = "20px";
+                handCanvas.style.width = "128px";
+                handCanvas.style.imageRendering = "pixelated";
+                document.body.appendChild(handCanvas);
+            }
+
+            // Musik & Sounds initialisieren (falls noch nicht)
+            if (typeof Sound !== "undefined" && typeof Sound.init === "function") {
+                Sound.init();
+            }
+            if (typeof startMusic === "function") {
+                startMusic();
             }
         }
 
