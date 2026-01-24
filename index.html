@@ -4,19 +4,46 @@
     <meta charset="UTF-8">
     <title>MEINKRAFT TEST</title>
 
-    <!-- CSS (liegt neben index.html) -->
+    <!-- ===============================
+         CSS (Hintergrund + UI)
+    ================================ -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- TEXTURE & SOUND ENGINE (liegen in game/textures/) -->
+    <!-- ===============================
+         ENGINE: TEXTUREN + SOUNDS
+         (MÜSSEN VOR DER WELT GELADEN WERDEN)
+    ================================ -->
     <script src="game/textures/textures.js"></script>
     <script src="game/textures/sounds.js"></script>
-<script src="blockData.js"></script>
+
+    <!-- ===============================
+         BLOCKDATEN + INVENTAR
+         (WERKZEUGE, HÄRTE, ITEMS)
+    ================================ -->
+    <script src="blockData.js"></script>
     <script src="inventory.js"></script>
-<script src="renderWorld.js"></script>
-    <!-- SKIN-SYSTEM (liegt neben index.html) -->
+
+    <!-- ===============================
+         WELT-GENERATOR
+         (startWorld.js ODER world.js)
+         MUSS VOR renderWorld.js GELADEN WERDEN!
+    ================================ -->
+    <script src="startWorld.js"></script>
+
+    <!-- ===============================
+         RENDERER (Canvas)
+         MUSS NACH startWorld.js GELADEN WERDEN!
+    ================================ -->
+    <script src="renderWorld.js"></script>
+
+    <!-- ===============================
+         SKIN-SYSTEM
+    ================================ -->
     <script src="skins.js"></script>
 
-    <!-- KLICK, MUSIK, WELT -->
+    <!-- ===============================
+         UI / MENÜ / MUSIK / KLICK
+    ================================ -->
     <script src="click.js"></script>
     <script src="music.js"></script>
     <script src="textres.js"></script>
@@ -24,7 +51,9 @@
 
 <body>
 
-    <!-- HAUPTMENÜ -->
+    <!-- ===============================
+         HAUPTMENÜ
+    ================================ -->
     <div id="main-menu" class="menu">
         <div class="logo">MEINKRAFT</div>
 
@@ -34,7 +63,9 @@
         <button id="btn-quit" class="menu-btn">Beenden</button>
     </div>
 
-    <!-- EINZELSPIELER-MENÜ -->
+    <!-- ===============================
+         EINZELSPIELER-MENÜ
+    ================================ -->
     <div id="singleplayer-menu" class="menu hidden">
         <div class="logo">Einzelspieler</div>
 
@@ -44,7 +75,9 @@
         <button id="btn-back-from-single" class="menu-btn back-btn">Zurück</button>
     </div>
 
-    <!-- EINSTELLUNGEN-MENÜ -->
+    <!-- ===============================
+         EINSTELLUNGEN-MENÜ
+    ================================ -->
     <div id="settings-menu" class="menu hidden">
         <div class="logo">Einstellungen</div>
 
@@ -68,43 +101,30 @@
         <button id="btn-back-from-settings" class="menu-btn back-btn">Zurück</button>
     </div>
 
-    <!-- HAUPT-SCRIPT -->
+    <!-- ===============================
+         HAUPT-SCRIPT (MENÜ LOGIK)
+    ================================ -->
     <script>
-        // Klicksound sicher abspielen
         function playClickSafe() {
-            if (typeof playClick === "function") {
-                playClick();
-            }
+            if (typeof playClick === "function") playClick();
         }
 
-        // Musik umschalten
         let musicEnabled = true;
         function toggleMusic() {
             musicEnabled = !musicEnabled;
             const btn = document.getElementById("btn-music-toggle");
             btn.textContent = "Musik: " + (musicEnabled ? "AN" : "AUS");
 
-            if (typeof setMusicEnabled === "function") {
-                setMusicEnabled(musicEnabled);
-            } else if (typeof toggleMusicState === "function") {
-                toggleMusicState(musicEnabled);
-            }
+            if (typeof setMusicEnabled === "function") setMusicEnabled(musicEnabled);
+            else if (typeof toggleMusicState === "function") toggleMusicState(musicEnabled);
         }
 
-        // Welt starten – hier binden wir Skin + Sounds + Musik ein
         function startWorldWithSeed(seed) {
-            if (typeof startWorld === "function") {
-                startWorld(seed);
-            } else if (typeof initWorld === "function") {
-                initWorld(seed);
-            } else {
-                console.log("Weltstart (Stub): Seed =", seed);
-            }
+            if (typeof startWorld === "function") startWorld(seed);
+            else if (typeof initWorld === "function") initWorld(seed);
 
-            // Spieler-Typ erkennen & Skin generieren
-            if (typeof detectPlayerType === "function") {
-                detectPlayerType();
-            }
+            if (typeof detectPlayerType === "function") detectPlayerType();
+
             if (PlayerSkin && PlayerSkin.parts && PlayerSkin.parts.hand) {
                 const handCanvas = PlayerSkin.parts.hand;
                 handCanvas.style.position = "fixed";
@@ -115,16 +135,10 @@
                 document.body.appendChild(handCanvas);
             }
 
-            // Musik & Sounds initialisieren (falls noch nicht)
-            if (typeof Sound !== "undefined" && typeof Sound.init === "function") {
-                Sound.init();
-            }
-            if (typeof startMusic === "function") {
-                startMusic();
-            }
+            if (typeof Sound !== "undefined" && typeof Sound.init === "function") Sound.init();
+            if (typeof startMusic === "function") startMusic();
         }
 
-        // Menüs
         const mainMenu = document.getElementById("main-menu");
         const singleMenu = document.getElementById("singleplayer-menu");
         const settingsMenu = document.getElementById("settings-menu");
@@ -136,7 +150,6 @@
             menu.classList.remove("hidden");
         }
 
-        // Hauptmenü
         document.getElementById("btn-singleplayer").addEventListener("click", () => {
             playClickSafe();
             showMenu(singleMenu);
@@ -152,7 +165,6 @@
             alert("Beenden ist im Browser nicht möglich.");
         });
 
-        // Einzelspieler
         document.getElementById("btn-back-from-single").addEventListener("click", () => {
             playClickSafe();
             showMenu(mainMenu);
@@ -164,7 +176,6 @@
             startWorldWithSeed(seed);
         });
 
-        // Einstellungen
         document.getElementById("btn-back-from-settings").addEventListener("click", () => {
             playClickSafe();
             showMenu(mainMenu);
