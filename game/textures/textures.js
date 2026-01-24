@@ -1,3 +1,4 @@
+TEXTURES.air = null;
 // =====================
 //  TEXTURE ENGINE (ALL-IN-ONE)
 // =====================
