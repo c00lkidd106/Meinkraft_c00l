@@ -20,7 +20,69 @@ function renderWorld() {
 
     const ctx = canvas.getContext("2d");
     const tileSize = canvas.width / WORLD.size;
+// ==============================================
+// BLOCK ABBREISSEN + BLOCK PLATZIEREN
+// ==============================================
 
+// Wird beim Halten der Maustaste benutzt
+let isBreaking = false;
+let breakInterval = null;
+
+canvas.addEventListener("mousedown", (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.floor((event.clientX - rect.left) / tileSize);
+    const y = Math.floor((event.clientY - rect.top) / tileSize);
+
+    const block = WORLD.blocks[y]?.[x];
+    if (!block) return;
+
+    // Linksklick = ABBREISSEN
+    if (event.button === 0) {
+        if (block === "air") return;
+
+        const hardness = BLOCK_HARDNESS[block] || 1;
+        const speed = getEffectiveSpeed(currentTool, block);
+        const timeToBreak = hardness / speed;
+
+        let progress = 0;
+        isBreaking = true;
+
+        breakInterval = setInterval(() => {
+            if (!isBreaking) {
+                clearInterval(breakInterval);
+                return;
+            }
+
+            progress += 0.1;
+
+            if (progress >= timeToBreak) {
+                Sound.play("break", block);
+                WORLD.blocks[y][x] = "air";
+                clearInterval(breakInterval);
+                renderWorld();
+            }
+        }, 100);
+    }
+
+    // Rechtsklick = PLATZIEREN
+    if (event.button === 2) {
+        event.preventDefault();
+
+        const blockToPlace = "dirt";
+
+        if (WORLD.blocks[y][x] === "air") {
+            WORLD.blocks[y][x] = blockToPlace;
+            Sound.play("place", blockToPlace);
+            renderWorld();
+        }
+    }
+});
+
+// Wenn Maustaste losgelassen wird → Abbau stoppen
+canvas.addEventListener("mouseup", () => {
+    isBreaking = false;
+    clearInterval(breakInterval);
+});
     for (let y = 0; y < WORLD.size; y++) {
         for (let x = 0; x < WORLD.size; x++) {
             const block = WORLD.blocks[y][x];
