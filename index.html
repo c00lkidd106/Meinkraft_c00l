@@ -8,6 +8,7 @@
 
 <body>
 <div style="color:black; font-size:40px;">TESTTEXT</div>
+
     <!-- TESTTEXT -->
     <div style="color:white; font-size:32px; position:fixed; top:10px; left:10px;">
         TEST: HTML WIRD GELADEN
@@ -36,6 +37,24 @@
         <button class="menu-btn">Einstellungen</button>
         <button class="menu-btn">Beenden</button>
     </div>
+
+    <!-- RESET BUTTON -->
+    <button 
+        onclick="localStorage.removeItem('access_granted'); location.reload();" 
+        style="
+            position:fixed;
+            bottom:10px;
+            right:10px;
+            padding:10px 15px;
+            background:#222;
+            color:white;
+            border:2px solid #00ff88;
+            border-radius:6px;
+            z-index:999999;
+            cursor:pointer;
+        ">
+        Zugang zurücksetzen
+    </button>
 
     <!-- DEIN TESTSCRIPT -->
     <script>
