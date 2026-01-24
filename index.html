@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>MEINKRAFT TEST</title>
+
+    <!-- CSS (liegt neben index.html) -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- TEXTURE & SOUND ENGINE (liegen in game/textures/) -->
+    <script src="game/textures/textures.js"></script>
+    <script src="game/textures/sounds.js"></script>
+
+    <!-- KLICK, MUSIK, WELT -->
+    <script src="click.js"></script>
+    <script src="music.js"></script>
+    <script src="textres.js"></script>
 </head>
 
 <body>
@@ -52,21 +63,16 @@
         <button id="btn-back-from-settings" class="menu-btn back-btn">Zurück</button>
     </div>
 
-    <!-- EXTERNE SCRIPTS -->
-    <script src="click.js"></script>
-    <script src="music.js"></script>
-    <script src="textres.js"></script>
-
     <!-- HAUPT-SCRIPT -->
     <script>
-        // Hilfsfunktion: Klicksound sicher abspielen
+        // Klicksound sicher abspielen
         function playClickSafe() {
             if (typeof playClick === "function") {
                 playClick();
             }
         }
 
-        // Hilfsfunktion: Musik umschalten
+        // Musik umschalten
         let musicEnabled = true;
         function toggleMusic() {
             musicEnabled = !musicEnabled;
@@ -80,7 +86,7 @@
             }
         }
 
-        // Hilfsfunktion: Welt starten
+        // Welt starten
         function startWorldWithSeed(seed) {
             if (typeof startWorld === "function") {
                 startWorld(seed);
@@ -103,65 +109,51 @@
             menu.classList.remove("hidden");
         }
 
-        // Buttons Hauptmenü
-        const btnSingle = document.getElementById("btn-singleplayer");
-        const btnSettings = document.getElementById("btn-settings");
-        const btnQuit = document.getElementById("btn-quit");
-
-        btnSingle.addEventListener("click", () => {
+        // Hauptmenü
+        document.getElementById("btn-singleplayer").addEventListener("click", () => {
             playClickSafe();
             showMenu(singleMenu);
         });
 
-        btnSettings.addEventListener("click", () => {
+        document.getElementById("btn-settings").addEventListener("click", () => {
             playClickSafe();
             showMenu(settingsMenu);
         });
 
-        btnQuit.addEventListener("click", () => {
+        document.getElementById("btn-quit").addEventListener("click", () => {
             playClickSafe();
-            // Browser darf man meist nicht einfach schließen – hier nur Platzhalter:
             alert("Beenden ist im Browser nicht möglich.");
         });
 
-        // Einzelspieler-Menü
-        const btnBackSingle = document.getElementById("btn-back-from-single");
-        const btnStartWorld = document.getElementById("btn-start-world");
-        const seedInput = document.getElementById("seed-input");
-
-        btnBackSingle.addEventListener("click", () => {
+        // Einzelspieler
+        document.getElementById("btn-back-from-single").addEventListener("click", () => {
             playClickSafe();
             showMenu(mainMenu);
         });
 
-        btnStartWorld.addEventListener("click", () => {
+        document.getElementById("btn-start-world").addEventListener("click", () => {
             playClickSafe();
-            const seed = seedInput.value.trim();
+            const seed = document.getElementById("seed-input").value.trim();
             startWorldWithSeed(seed);
         });
 
-        // Einstellungen-Menü
-        const btnBackSettings = document.getElementById("btn-back-from-settings");
-        const btnDiffPeaceful = document.getElementById("btn-diff-peaceful");
-        const btnDiffEasyHeal = document.getElementById("btn-diff-easy-heal");
-        const btnMusicToggle = document.getElementById("btn-music-toggle");
-
-        btnBackSettings.addEventListener("click", () => {
+        // Einstellungen
+        document.getElementById("btn-back-from-settings").addEventListener("click", () => {
             playClickSafe();
             showMenu(mainMenu);
         });
 
-        btnDiffPeaceful.addEventListener("click", () => {
+        document.getElementById("btn-diff-peaceful").addEventListener("click", () => {
             playClickSafe();
             console.log("Schwierigkeit: Friedlich");
         });
 
-        btnDiffEasyHeal.addEventListener("click", () => {
+        document.getElementById("btn-diff-easy-heal").addEventListener("click", () => {
             playClickSafe();
             console.log("Schwierigkeit: Einfach (Heilen mit Essen, ohne feindliche Mobs)");
         });
 
-        btnMusicToggle.addEventListener("click", () => {
+        document.getElementById("btn-music-toggle").addEventListener("click", () => {
             playClickSafe();
             toggleMusic();
         });
