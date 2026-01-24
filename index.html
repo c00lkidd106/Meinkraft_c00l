@@ -3,80 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <title>MEINKRAFT TEST</title>
-  <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- CODE SCREEN BACKGROUND -->
-    <div id="code-screen-bg"></div>
-
-    <!-- CODE SCREEN -->
-    <div id="code-screen" class="menu">
-        <div class="logo">MEINKRAFT</div>
-        <p>Gib den Zugangscode ein:</p>
-
-        <input id="access-code" class="world-input" placeholder="Code eingeben">
-
-        <button id="btn-check-code" class="menu-btn">Bestätigen</button>
-
-        <p id="code-error" style="color:red; display:none;">Falscher Code!</p>
-    </div>
-
     <!-- HAUPTMENÜ -->
-    <div id="main-menu" class="menu hidden">
+    <div id="main-menu" class="menu">
         <div class="logo">MEINKRAFT</div>
 
-        <button class="menu-btn">Welt starten</button>
-        <button class="menu-btn">Einstellungen</button>
-        <button class="menu-btn">Beenden</button>
+        <button id="btn-singleplayer" class="menu-btn">Einzelspieler</button>
+        <button id="btn-multiplayer" class="menu-btn disabled">Mehrspieler (nicht verfügbar)</button>
+        <button id="btn-settings" class="menu-btn">Einstellungen</button>
+        <button id="btn-quit" class="menu-btn">Beenden</button>
     </div>
 
-    <!-- RESET BUTTON -->
-    <button 
-        onclick="localStorage.removeItem('access_granted'); location.reload();" 
-        style="
-            position:fixed;
-            bottom:10px;
-            right:10px;
-            padding:10px 15px;
-            background:#222;
-            color:white;
-            border:2px solid #00ff88;
-            border-radius:6px;
-            z-index:999999;
-            cursor:pointer;
-        ">
-        Zugang zurücksetzen
-    </button>
+    <!-- EINZELSPIELER-MENÜ -->
+    <div id="singleplayer-menu" class="menu hidden">
+        <div class="logo">Einzelspieler</div>
 
-    <!-- SCRIPT -->
+        <input id="seed-input" class="world-input" placeholder="Seed eingeben (optional)">
+        <button id="btn-start-world" class="menu-btn">Welt starten</button>
+
+        <button id="btn-back-from-single" class="menu-btn back-btn">Zurück</button>
+    </div>
+
+    <!-- EINSTELLUNGEN-MENÜ -->
+    <div id="settings-menu" class="menu hidden">
+        <div class="logo">Einstellungen</div>
+
+        <div class="settings-group">Schwierigkeit</div>
+        <button id="btn-diff-peaceful" class="menu-btn settings-btn">Friedlich</button>
+        <button id="btn-diff-easy-heal" class="menu-btn settings-btn">Einfach – mit Essen heilen, ohne feindliche Mobs</button>
+        <button class="menu-btn settings-btn disabled">Einfach – mit Essen, mit feindlichen Mobs (nicht verfügbar)</button>
+        <button class="menu-btn settings-btn disabled">Normal (nicht verfügbar)</button>
+        <button class="menu-btn settings-btn disabled">Schwer (nicht verfügbar)</button>
+        <button class="menu-btn settings-btn disabled">HARDMODE!!! (nicht verfügbar)</button>
+
+        <div class="settings-group">Sprache</div>
+        <button class="menu-btn settings-btn disabled">Language (nicht verfügbar)</button>
+
+        <div class="settings-group">Musik</div>
+        <button id="btn-music-toggle" class="menu-btn settings-btn">Musik: AN</button>
+
+        <div class="settings-group">Sounds</div>
+        <button id="btn-sounds-placeholder" class="menu-btn settings-btn disabled">Sounds (noch nicht implementiert)</button>
+
+        <button id="btn-back-from-settings" class="menu-btn back-btn">Zurück</button>
+    </div>
+
+    <!-- EXTERNE SCRIPTS -->
+    <script src="click.js"></script>
+    <script src="music.js"></script>
+    <script src="textres.js"></script>
+
+    <!-- HAUPT-SCRIPT -->
     <script>
-        const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ==");
-
-        const codeScreen = document.getElementById("code-screen");
-        const codeBg = document.getElementById("code-screen-bg");
-        const mainMenu = document.getElementById("main-menu");
-
-        function showMainMenu() {
-            codeScreen.style.display = "none";
-            codeBg.style.display = "none";
-            mainMenu.classList.remove("hidden");
-        }
-
-        if (localStorage.getItem("access_granted") === "true") {
-            showMainMenu();
-        }
-
-        document.getElementById("btn-check-code").addEventListener("click", () => {
-            const input = document.getElementById("access-code").value.trim();
-
-            if (input === SECRET_CODE) {
-                localStorage.setItem("access_granted", "true");
-                showMainMenu();
-            } else {
-                document.getElementById("code-error").style.display = "block";
+        // Hilfsfunktion: Klicksound sicher abspielen
+        function playClickSafe() {
+            if (typeof playClick === "function") {
+                playClick();
             }
+        }
+
+        // Hilfsfunktion: Musik umschalten
+        let musicEnabled = true;
+        function toggleMusic() {
+            musicEnabled = !musicEnabled;
+            const btn = document.getElementById("btn-music-toggle");
+            btn.textContent = "Musik: " + (musicEnabled ? "AN" : "AUS");
+
+            if (typeof setMusicEnabled === "function") {
+                setMusicEnabled(musicEnabled);
+            } else if (typeof toggleMusicState === "function") {
+                toggleMusicState(musicEnabled);
+            }
+        }
+
+        // Hilfsfunktion: Welt starten
+        function startWorldWithSeed(seed) {
+            if (typeof startWorld === "function") {
+                startWorld(seed);
+            } else if (typeof initWorld === "function") {
+                initWorld(seed);
+            } else {
+                console.log("Weltstart (Stub): Seed =", seed);
+            }
+        }
+
+        // Menüs
+        const mainMenu = document.getElementById("main-menu");
+        const singleMenu = document.getElementById("singleplayer-menu");
+        const settingsMenu = document.getElementById("settings-menu");
+
+        function showMenu(menu) {
+            mainMenu.classList.add("hidden");
+            singleMenu.classList.add("hidden");
+            settingsMenu.classList.add("hidden");
+            menu.classList.remove("hidden");
+        }
+
+        // Buttons Hauptmenü
+        const btnSingle = document.getElementById("btn-singleplayer");
+        const btnSettings = document.getElementById("btn-settings");
+        const btnQuit = document.getElementById("btn-quit");
+
+        btnSingle.addEventListener("click", () => {
+            playClickSafe();
+            showMenu(singleMenu);
+        });
+
+        btnSettings.addEventListener("click", () => {
+            playClickSafe();
+            showMenu(settingsMenu);
+        });
+
+        btnQuit.addEventListener("click", () => {
+            playClickSafe();
+            // Browser darf man meist nicht einfach schließen – hier nur Platzhalter:
+            alert("Beenden ist im Browser nicht möglich.");
+        });
+
+        // Einzelspieler-Menü
+        const btnBackSingle = document.getElementById("btn-back-from-single");
+        const btnStartWorld = document.getElementById("btn-start-world");
+        const seedInput = document.getElementById("seed-input");
+
+        btnBackSingle.addEventListener("click", () => {
+            playClickSafe();
+            showMenu(mainMenu);
+        });
+
+        btnStartWorld.addEventListener("click", () => {
+            playClickSafe();
+            const seed = seedInput.value.trim();
+            startWorldWithSeed(seed);
+        });
+
+        // Einstellungen-Menü
+        const btnBackSettings = document.getElementById("btn-back-from-settings");
+        const btnDiffPeaceful = document.getElementById("btn-diff-peaceful");
+        const btnDiffEasyHeal = document.getElementById("btn-diff-easy-heal");
+        const btnMusicToggle = document.getElementById("btn-music-toggle");
+
+        btnBackSettings.addEventListener("click", () => {
+            playClickSafe();
+            showMenu(mainMenu);
+        });
+
+        btnDiffPeaceful.addEventListener("click", () => {
+            playClickSafe();
+            console.log("Schwierigkeit: Friedlich");
+        });
+
+        btnDiffEasyHeal.addEventListener("click", () => {
+            playClickSafe();
+            console.log("Schwierigkeit: Einfach (Heilen mit Essen, ohne feindliche Mobs)");
+        });
+
+        btnMusicToggle.addEventListener("click", () => {
+            playClickSafe();
+            toggleMusic();
         });
     </script>
 
