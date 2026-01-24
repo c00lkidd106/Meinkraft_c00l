@@ -1,4 +1,4 @@
-TEXTURES.air = null;
+
 // =====================
 //  TEXTURE ENGINE (ALL-IN-ONE)
 // =====================
@@ -65,6 +65,7 @@ function addNoise(canvas, strength = 10) {
 
 // Registry
 const TEXTURES = {};
+TEXTURES.air = null;
 
 
 // =====================
