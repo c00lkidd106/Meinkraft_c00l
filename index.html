@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>MEINKRAFT</title>
+    <title>MEINKRAFT TEST</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -64,12 +64,10 @@
             mainMenu.classList.remove("hidden");
         }
 
-        // Wenn bereits freigeschaltet → direkt Menü zeigen
         if (localStorage.getItem("access_granted") === "true") {
             showMainMenu();
         }
 
-        // Code prüfen
         document.getElementById("btn-check-code").addEventListener("click", () => {
             const input = document.getElementById("access-code").value.trim();
 
