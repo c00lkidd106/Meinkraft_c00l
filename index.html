@@ -7,12 +7,6 @@
 </head>
 
 <body>
-<div style="color:black; font-size:40px;">TESTTEXT</div>
-
-    <!-- TESTTEXT -->
-    <div style="color:white; font-size:32px; position:fixed; top:10px; left:10px;">
-        TEST: HTML WIRD GELADEN
-    </div>
 
     <!-- CODE SCREEN BACKGROUND -->
     <div id="code-screen-bg"></div>
@@ -56,10 +50,8 @@
         Zugang zurücksetzen
     </button>
 
-    <!-- DEIN TESTSCRIPT -->
+    <!-- SCRIPT -->
     <script>
-        alert("Script läuft!"); // TEST 1
-
         const SECRET_CODE = atob("U1YtQUxQSEEtMjAyNQ==");
 
         const codeScreen = document.getElementById("code-screen");
@@ -67,21 +59,21 @@
         const mainMenu = document.getElementById("main-menu");
 
         function showMainMenu() {
-            alert("Hauptmenü wird angezeigt!"); // TEST 2
             codeScreen.style.display = "none";
             codeBg.style.display = "none";
             mainMenu.classList.remove("hidden");
         }
 
+        // Wenn bereits freigeschaltet → direkt Menü zeigen
         if (localStorage.getItem("access_granted") === "true") {
             showMainMenu();
         }
 
+        // Code prüfen
         document.getElementById("btn-check-code").addEventListener("click", () => {
             const input = document.getElementById("access-code").value.trim();
 
             if (input === SECRET_CODE) {
-                alert("Code korrekt! Menü wird geladen."); // TEST 3
                 localStorage.setItem("access_granted", "true");
                 showMainMenu();
             } else {
